@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class manageGameInstructions : MonoBehaviour
+{
+    private Text instructions;
+    // Start is called before the first frame update
+    void Start()
+    {
+      instructions = GetComponent<Text>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+      
+    }
+    public void gameBegins()
+    {
+      instructions.text = "move the mouse to tilt the platform and navigate the ball into the hole! ";
+    }
+    public void firstLevelDone()
+    {
+      instructions.text = "don't worry! It gets harder over time!";
+    }
+}
