@@ -14,7 +14,7 @@ public class customSphereParam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      // characterController.Move(new Vector3(0, 0, 0));
+      
     }
     IEnumerator setReachedGround()
     {
