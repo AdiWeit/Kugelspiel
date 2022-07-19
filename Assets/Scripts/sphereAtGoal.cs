@@ -24,6 +24,7 @@ public class sphereAtGoal : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+      other.gameObject.GetComponent<customSphereParam>().reachedGoal = true;
       Debug.Log("sphere reached goal!");
       Destroy(other.gameObject, 0.25f);
       inGoalCount++;

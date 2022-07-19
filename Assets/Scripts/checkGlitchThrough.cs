@@ -20,9 +20,13 @@ public class checkGlitchThrough : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-      Debug.Log("sphere glitched!");
-      goalManager.spawnSphere(1, other.gameObject);
-      Destroy(other.gameObject);
+      if (!other.gameObject.GetComponent<customSphereParam>().reachedGoal) {
+        // Debug.Break();
+        Debug.Log("sphere glitched!");
+        goalManager.spawnSphere(1, other.gameObject);
+        Destroy(other.gameObject);
+      }
+
       // glitchFixed = false;
       // other.gameObject.GetComponent<Rigidbody>().useGravity = false;
       // StartCoroutine("fixGlitch", other.gameObject);
