@@ -23,8 +23,8 @@ public class checkGlitchThrough : MonoBehaviour
       if (!other.gameObject.GetComponent<customSphereParam>().reachedGoal) {
         // Debug.Break();
         Debug.Log("sphere glitched!");
-        goalManager.spawnSphere(1, other.gameObject);
-        Destroy(other.gameObject);
+        // goalManager.spawnSphere(1, other.gameObject);
+        // Destroy(other.gameObject);
       }
 
       // glitchFixed = false;
