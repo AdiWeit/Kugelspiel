@@ -20,7 +20,7 @@ public class sphereAtGoal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      Debug.Log("Github test");
+      
     }
     private void OnTriggerEnter(Collider other)
     {
