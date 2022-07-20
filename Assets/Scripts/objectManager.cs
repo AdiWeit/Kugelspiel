@@ -5,6 +5,7 @@ using UnityEngine;
 public class objectManager : MonoBehaviour
 {
     public GameObject sphereReference;
+    public movePlane movingCube;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +17,17 @@ public class objectManager : MonoBehaviour
     {
         
     }
-    public void spawnSphere(int counter, GameObject referenceGameObj)
+    public void spawnSphere(int counter, float x, float z)
     {
       Quaternion rotation = new Quaternion(0, 0, 0, 0);
       for (int i = 0; i < counter; i++)
       {
-        Vector3 position = new Vector3(Random.Range(0, 2.91f), 8.88f, Random.Range(-2.75f, 2.75f));
-        if (referenceGameObj != null) {
-          position = referenceGameObj.transform.position;
-          position.y = referenceGameObj.transform.position.y + 4f;// + 0.645f;
-          rotation = referenceGameObj.transform.rotation;
-        }
+        Vector3 position = new Vector3(Random.Range(-4.84f + movingCube.transform.rotation.x, 3.8f + movingCube.transform.rotation.x), 3.88f, Random.Range(-4.46f + movingCube.transform.rotation.x, 4.36f + movingCube.transform.rotation.y));
+        if (x != 0) position = new Vector3(x, 3.88f, z);
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
+        // GameObject debugSphere = Instantiate(sphereReference, position, rotation);
+        // debugSphere.GetComponent<Rigidbody>().useGravity = false;
+        // debugSphere.GetComponent<SphereCollider>().enabled = false;
       }
     }
 }
