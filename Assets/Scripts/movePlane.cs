@@ -7,6 +7,7 @@ public class movePlane : MonoBehaviour
 {
     public sphereAtGoal goalManager;
     public manageGameInstructions instructionsText;
+    public objectManager objManager;
     Vector3 startPosition; 
     Vector3 rotationPosition;
     // Start is called before the first frame update
@@ -24,9 +25,9 @@ public class movePlane : MonoBehaviour
       }
       rotationPosition = Input.mousePosition - startPosition;
       if (!goalManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
-        goalManager.spawnSphere(1, null);
+        objManager.spawnSphere(1, null);
         goalManager.gameStarted = true;
-        instructionsText.gameBegins();
+        instructionsText.levelDone(0);
       }
       if (goalManager.gameStarted) {
       transform.transform.eulerAngles = new Vector3(

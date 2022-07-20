@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class scoreSystem : MonoBehaviour
 {
     private int score { get; set; }
-    public manageGameInstructions instructionsText;
     private Text textObj;
     // Start is called before the first frame update
     void Start()
@@ -23,7 +22,6 @@ public class scoreSystem : MonoBehaviour
     public void goalReached()
     {
       score++;
-      if (score == 1) instructionsText.firstLevelDone();
       textObj.text = "Score: " + score;
     }
 }

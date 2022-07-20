@@ -221,6 +221,51 @@ Transform:
   m_Father: {fileID: 1394450148}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &142792474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142792475}
+  - component: {fileID: 142792476}
+  m_Layer: 0
+  m_Name: objectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142792475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142792474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07658364, y: 8.607339, z: -2.103662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &142792476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142792474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042ef15797adf8cde91ea64cb1234c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sphereReference: {fileID: 2413374920935079475, guid: 5aa2922531b6ee7bba8dd855df390329, type: 3}
 --- !u!1 &316254815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,7 +2714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e195a8b066dafc1a9ae735a1d24f6d12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instructionsText: {fileID: 976561618}
 --- !u!114 &985867330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2843,7 +2887,7 @@ GameObject:
   - component: {fileID: 1100881396}
   - component: {fileID: 1100881402}
   m_Layer: 0
-  m_Name: Cylinder proBuilder
+  m_Name: goal_hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3509,7 +3553,8 @@ MonoBehaviour:
   sphereCount: 1
   inGoalCount: 0
   scoreObj: {fileID: 985867329}
-  sphereReference: {fileID: 2413374920935079475, guid: 5aa2922531b6ee7bba8dd855df390329, type: 3}
+  instructionsText: {fileID: 976561618}
+  objManager: {fileID: 142792476}
   gameStarted: 0
 --- !u!1 &1118790864
 GameObject:
@@ -3525,7 +3570,7 @@ GameObject:
   - component: {fileID: 1118790867}
   - component: {fileID: 1118790870}
   m_Layer: 0
-  m_Name: outerBox_proBuilder
+  m_Name: box_below_cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5442,7 +5487,7 @@ GameObject:
   - component: {fileID: 1394450144}
   - component: {fileID: 1394450149}
   m_Layer: 0
-  m_Name: New Game Object
+  m_Name: movingCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5462,6 +5507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalManager: {fileID: 1100881402}
   instructionsText: {fileID: 976561618}
+  objManager: {fileID: 142792476}
 --- !u!33 &1394450145
 MeshFilter:
   m_ObjectHideFlags: 10
