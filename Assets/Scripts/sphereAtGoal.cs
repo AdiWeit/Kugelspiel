@@ -28,16 +28,16 @@ public class sphereAtGoal : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
       other.gameObject.GetComponent<customSphereParam>().reachedGoal = true;
-      Debug.Log("sphere reached goal!");
       Destroy(other.gameObject, 0.25f);
       inGoalCount++;
+      Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");
       if (inGoalCount == sphereCount) {
         sphereCount++;
         scoreObj.goalReached();
         currentLevel++;
         instructionsText.levelDone(currentLevel);
         inGoalCount = 0;
-        objManager.spawnSphere(sphereCount, null);
+        objManager.spawnSphere(sphereCount, 0, 0);
       }
     }
 }

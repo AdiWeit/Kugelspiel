@@ -25,9 +25,6 @@ public class objectManager : MonoBehaviour
         Vector3 position = new Vector3(Random.Range(-4.84f + movingCube.transform.rotation.x, 3.8f + movingCube.transform.rotation.x), 3.88f, Random.Range(-4.46f + movingCube.transform.rotation.x, 4.36f + movingCube.transform.rotation.y));
         if (x != 0) position = new Vector3(x, 3.88f, z);
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
-        // GameObject debugSphere = Instantiate(sphereReference, position, rotation);
-        // debugSphere.GetComponent<Rigidbody>().useGravity = false;
-        // debugSphere.GetComponent<SphereCollider>().enabled = false;
       }
     }
 }

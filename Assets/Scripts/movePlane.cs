@@ -25,7 +25,7 @@ public class movePlane : MonoBehaviour
       }
       rotationPosition = Input.mousePosition - startPosition;
       if (!goalManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
-        objManager.spawnSphere(1, null);
+        objManager.spawnSphere(1, 0, 0);
         goalManager.gameStarted = true;
         instructionsText.levelDone(0);
       }
