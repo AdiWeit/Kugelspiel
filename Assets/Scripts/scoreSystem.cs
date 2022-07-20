@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class scoreSystem : MonoBehaviour
 {
-    private int score { get; set; }
+    private int score = 0;
     private Text textObj;
     // Start is called before the first frame update
     void Start()
     {
-      score = 0;
       textObj = GetComponent<Text>();
     }
 

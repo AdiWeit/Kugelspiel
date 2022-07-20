@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class glitchDetection : MonoBehaviour
+public class sphereBlocking : MonoBehaviour
 {
-    public objectManager objManager;
+    public sphereAtGoal goalManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,12 +16,11 @@ public class glitchDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
     private void OnTriggerEnter(Collider other)
     {
-      Debug.Log("sphere glitched! new one is spawning!");
-      objManager.spawnSphere(-0.52f, -0.5f, other.gameObject.GetComponent<customSphereParam>().type);
-      Destroy(other.gameObject);
+      // TODO
+      if (other.gameObject.GetComponent<customSphereParam>().type == "blocker") goalManager.goalReached(other.gameObject);
     }
 }
