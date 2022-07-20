@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class manageGameInstructions : MonoBehaviour
+public class gameInstructions : MonoBehaviour
 {
     private Text instructions;
     // Start is called before the first frame update

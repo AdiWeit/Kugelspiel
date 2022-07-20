@@ -28,7 +28,7 @@ public class objectManager : MonoBehaviour
         Vector3 position = new Vector3(Random.Range(-4.84f + movingCube.transform.rotation.x, 3.8f + movingCube.transform.rotation.x), 3.88f, Random.Range(-4.46f + movingCube.transform.rotation.x, 4.36f + movingCube.transform.rotation.y));
         if (x != 0) position = new Vector3(x, 3.88f, z);
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
-        newSphere.GetComponent<customSphereParam>().type = type[i];
+        newSphere.GetComponent<marbleParams>().type = type[i];
         if (type[i] == "enemy") newSphere.GetComponent<MeshRenderer>().material = enemyMaterial;
         if (type[i] == "blocker") {
           newSphere.GetComponent<MeshRenderer>().material = blockerMaterial;

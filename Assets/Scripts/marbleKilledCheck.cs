@@ -17,7 +17,7 @@ public class marbleKilledCheck : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-      if (other.gameObject.GetComponent<customSphereParam>()?.type == "enemy")
+      if (other.gameObject.GetComponent<marbleParams>()?.type == "enemy")
       {
         Debug.Log("Restart level because enemy touched marble!");
       }

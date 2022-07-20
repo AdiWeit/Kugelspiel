@@ -21,6 +21,6 @@ public class sphereBlocking : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
       // TODO
-      if (other.gameObject.GetComponent<customSphereParam>().type == "blocker") goalManager.goalReached(other.gameObject);
+      if (other.gameObject.GetComponent<marbleParams>().type == "blocker") goalManager.goalReached(other.gameObject);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class customSphereParam : MonoBehaviour
+public class marbleParams : MonoBehaviour
 {
     public bool reachedGround = false;
     public string type;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class movePlane : MonoBehaviour
 {
     public sphereAtGoal goalManager;
-    public manageGameInstructions instructionsText;
+    public gameInstructions instructionsText;
     public objectManager objManager;
     Vector3 startPosition; 
     Vector3 rotationPosition;

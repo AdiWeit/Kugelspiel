@@ -10,7 +10,7 @@ public class sphereAtGoal : MonoBehaviour
     public int inGoalCount = 0;
     private int currentLevel = 0;
     public scoreSystem scoreObj;
-    public manageGameInstructions instructionsText;
+    public gameInstructions instructionsText;
     public objectManager objManager;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class sphereAtGoal : MonoBehaviour
     }
     public void goalReached(GameObject marble) {
       // TODO: multiple blocked --> make them disappear or just leave the other ones on the field?
-      if (marble.GetComponent<customSphereParam>().type != "blocker" || (marble.GetComponent<customSphereParam>().type == "blocker" && inGoalCount + 1 == sphereCount))
+      if (marble.GetComponent<marbleParams>().type != "blocker" || (marble.GetComponent<marbleParams>().type == "blocker" && inGoalCount + 1 == sphereCount))
       {
         Destroy(marble, 0.25f);
         inGoalCount++;
