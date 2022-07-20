@@ -20,5 +20,6 @@ public class manageGameInstructions : MonoBehaviour
     public void levelDone(int pLevel) {
       if (pLevel == 0) instructions.text = "move the mouse to tilt the platform and navigate the ball into the hole! ";
       if (pLevel == 1) instructions.text = "don't worry! It gets harder over time!";
+      if (pLevel > 2) instructions.text = "";
     }
 }
