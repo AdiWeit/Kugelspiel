@@ -4,7 +4,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
-public class sphereAtGoal : MonoBehaviour
+public class marbleAtGoal : MonoBehaviour
 {
     public int sphereCount = 1;
     public int inGoalCount = 0;

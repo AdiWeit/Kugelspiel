@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class movePlane : MonoBehaviour
 {
-    public sphereAtGoal goalManager;
+    public marbleAtGoal goalManager;
     public gameInstructions instructionsText;
     public objectManager objManager;
     Vector3 startPosition; 

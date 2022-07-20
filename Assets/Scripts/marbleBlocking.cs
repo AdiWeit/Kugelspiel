@@ -4,9 +4,9 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class sphereBlocking : MonoBehaviour
+public class marbleBlocking : MonoBehaviour
 {
-    public sphereAtGoal goalManager;
+    public marbleAtGoal goalManager;
     // Start is called before the first frame update
     void Start()
     {
