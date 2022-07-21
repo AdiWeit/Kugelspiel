@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class marbleBlocking : MonoBehaviour
 {
-    public marbleAtGoal goalManager;
+    public levelManager goalManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +20,6 @@ public class marbleBlocking : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-      // TODO
       if (other.gameObject.GetComponent<marbleParams>().type == "blocker") goalManager.goalReached(other.gameObject);
     }
 }

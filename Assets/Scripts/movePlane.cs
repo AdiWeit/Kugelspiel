@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class movePlane : MonoBehaviour
 {
-    public marbleAtGoal goalManager;
+    public levelManager levelManager;
     public gameInstructions instructionsText;
     public objectManager objManager;
     Vector3 startPosition; 
@@ -24,12 +24,12 @@ public class movePlane : MonoBehaviour
         Debug.Log("Set start position");
       }
       rotationPosition = Input.mousePosition - startPosition;
-      if (!goalManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
+      if (!levelManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
         objManager.spawnSphere(0, 0, "normal");
-        goalManager.gameStarted = true;
+        levelManager.gameStarted = true;
         instructionsText.levelDone(0);
       }
-      if (goalManager.gameStarted) {
+      if (levelManager.gameStarted) {
       transform.transform.eulerAngles = new Vector3(
         rotationPosition.y,
         0,
