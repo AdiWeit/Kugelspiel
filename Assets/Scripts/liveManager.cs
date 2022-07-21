@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class liveManager : MonoBehaviour
 {
     private int lives = 3;
     public levelManager levelManager;
+    public Text livesText;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,11 @@ public class liveManager : MonoBehaviour
     public void takeDamage()
     {
       lives--;
+      livesText.text = lives + " lives";
       if (lives > 0) levelManager.startLevel(-1, "random");
-      else levelManager.startLevel(0, "random");
+      else {
+        levelManager.startLevel(0, "random");
+        lives = 3;
+      }
     }
 }
