@@ -10,17 +10,19 @@ public class levelManager : MonoBehaviour
     public int sphereCount = 1;
     public int inGoalCount = 0;
     private int currentLevel = 0;
+    private bool waitBlockedDisapears = false;
     public scoreSystem scoreObj;
     public gameInstructions instructionsText;
     public objectManager objManager;
     public liveManager liveManager;
     public Text levelNrText;
+    public borderObj borderObj;
+    private Vector3 borderStartingPosition;
 
     // Start is called before the first frame update
     public bool gameStarted = false;
     void Start()
     {
-      
     }
 
     // Update is called once per frame
@@ -45,13 +47,17 @@ public class levelManager : MonoBehaviour
           startLevel(currentLevel, "random");
         }
       }
-      else StartCoroutine("marbleBlocked");
+      else if (!waitBlockedDisapears) {
+        waitBlockedDisapears = true;
+        StartCoroutine("marbleBlocked");
+      }
     }
     IEnumerator marbleBlocked()
     {
       Debug.Log("restart Level because of blocked marble");
       yield return new WaitForSeconds(2);
       liveManager.takeDamage();
+      waitBlockedDisapears = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -61,11 +67,15 @@ public class levelManager : MonoBehaviour
     {
       if (number == -1) number = currentLevel;
       if (number == 0) {
+        Debug.Log("restart with first level");
         currentLevel = 0;
         sphereCount = 1;
+        Debug.Log(borderStartingPosition);
+        borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, 1.04f, borderObj.transform.localPosition.z);
       }
-      levelNrText.text = (currentLevel + 1 + ". level");
       // reset level
+      else if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);
+      levelNrText.text = (currentLevel + 1 + ". level");
       foreach (GameObject obj in GameObject.FindGameObjectsWithTag("marble"))
       {
         Destroy(obj);
