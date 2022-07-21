@@ -30,6 +30,7 @@ public class objectManager : MonoBehaviour
         if (x != 0) position = new Vector3(x, 3.88f, z);
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
         newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
+        newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
         newSphere.GetComponent<marbleParams>().type = type[i];
         if (type[i] == "enemy") newSphere.GetComponent<MeshRenderer>().material = enemyMaterial;
         if (type[i] == "blocker") {

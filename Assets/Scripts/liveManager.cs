@@ -22,11 +22,11 @@ public class liveManager : MonoBehaviour
     public void takeDamage()
     {
       lives--;
-      livesText.text = lives + " lives";
       if (lives > 0) levelManager.startLevel(-1, "random");
       else {
         levelManager.startLevel(0, "random");
         lives = 3;
       }
+      livesText.text = lives + " lives";
     }
 }
