@@ -75,7 +75,7 @@ public class levelManager : MonoBehaviour
           // manage marble type distribution (Verteilung)
           string[] marbleDistribution = new string [sphereCount];
           if (currentLevel < 4 && currentLevel > 0) marbleDistribution[0] = "enemy";
-          if (currentLevel < 20 && Mathf.Floor(currentLevel / 4) <= 4) {
+          if (Mathf.Floor(currentLevel / 4) <= 4) {
             for (int i = 0; i < Mathf.Floor(currentLevel / 4); i++)
             {
               marbleDistribution[i] = "blocker";

@@ -18,8 +18,9 @@ public class gameInstructions : MonoBehaviour
       
     }
     public void levelDone(int pLevel) {
-      if (pLevel == 0) instructions.text = "move the mouse to tilt the platform and navigate the ball into the hole! ";
-      if (pLevel == 1) instructions.text = "don't worry! It gets harder over time!";
-      if (pLevel > 2) instructions.text = "";
+      if (pLevel == 0) instructions.text = "Move the mouse to tilt the platform and navigate the ball into the hole! ";
+      else if (pLevel == 1) instructions.text = "Don't touch the red marble! So don't worry! It gets harder over time! ";
+      else if (pLevel == 4) instructions.text = "Don't let the big gray one block your hole! It has to come in last!";
+      else instructions.text = "";
     }
 }
