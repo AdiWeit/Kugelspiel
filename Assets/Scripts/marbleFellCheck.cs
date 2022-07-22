@@ -16,7 +16,7 @@ public class marbleFellCheck : MonoBehaviour
     {
       if (gameObject.transform.position.y < -3.15) {
         Debug.Log("Marble fell down!");
-        liveManager.takeDamage();
+        liveManager.takeDamage(false);
         gameObject.transform.position = new Vector3(0, 10, 0);
       }
     }

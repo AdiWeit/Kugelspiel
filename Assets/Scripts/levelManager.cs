@@ -5,12 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using System.Linq;
+
 public class levelManager : MonoBehaviour
 {
-    public int sphereCount = 1;
+    // public int sphereCount = 8;
+    public int sphereCount = 0;
     public int inGoalCount = 0;
+    // private int currentLevel = 7;
     private int currentLevel = 0;
-    private bool waitBlockedDisapears = false;
+    public bool waitBlockedDisapears = false;
     public scoreSystem scoreObj;
     public gameInstructions instructionsText;
     public objectManager objManager;
@@ -31,19 +35,21 @@ public class levelManager : MonoBehaviour
       
     }
     public void goalReached(GameObject marble) {
-      // TODO: multiple blocked --> make them disappear or just leave the other ones on the field?
-      if (marble.GetComponent<marbleParams>().type != "blocker" || (marble.GetComponent<marbleParams>().type == "blocker" && inGoalCount + 1 == sphereCount))
+      if (marble.GetComponent<marbleParams>().type != "blocker" || (marble.GetComponent<marbleParams>().type == "blocker" && GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0))
       {
         Destroy(marble, 0.25f);
         inGoalCount++;
+        if (GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0) {
+          inGoalCount = sphereCount;
+        }
         Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");
         if (inGoalCount == sphereCount) {
           sphereCount++;
           scoreObj.goalReached();
           currentLevel++;
+          liveManager.getLive();
           Debug.Log((currentLevel + 1) + ". Level reached!");
           instructionsText.levelDone(currentLevel);
-          inGoalCount = 0;
           startLevel(currentLevel, "random");
         }
       }
@@ -56,7 +62,7 @@ public class levelManager : MonoBehaviour
     {
       Debug.Log("restart Level because of blocked marble");
       yield return new WaitForSeconds(2);
-      liveManager.takeDamage();
+      liveManager.takeDamage(true);
       waitBlockedDisapears = false;
     }
     private void OnTriggerEnter(Collider other)
@@ -68,10 +74,11 @@ public class levelManager : MonoBehaviour
       if (number == -1) number = currentLevel;
       if (number == 0) {
         Debug.Log("restart with first level");
-        currentLevel = 0;
-        sphereCount = 1;
-        Debug.Log(borderStartingPosition);
-        borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, 1.04f, borderObj.transform.localPosition.z);
+        if (currentLevel > 0) {
+          currentLevel--;
+          sphereCount--;
+          borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y + 0.001f, borderObj.transform.localPosition.z);
+        }
       }
       // reset level
       else if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);
@@ -82,19 +89,43 @@ public class levelManager : MonoBehaviour
       }
       inGoalCount = 0;
       if (type == "random") {
-          // manage marble type distribution (Verteilung)
-          string[] marbleDistribution = new string [sphereCount];
-          if (currentLevel < 4 && currentLevel > 0) marbleDistribution[0] = "enemy";
-          if (Mathf.Floor(currentLevel / 4) <= 4) {
-            for (int i = 0; i < Mathf.Floor(currentLevel / 4); i++)
-            {
-              marbleDistribution[i] = "blocker";
+        string[] marbleDistribution = new string [sphereCount];
+        // manage marble type distribution (Verteilung)
+        if (currentLevel < 4 && currentLevel > 0) marbleDistribution[0] = "enemy";
+        if (Mathf.Floor(currentLevel / 4) <= 4) {
+          for (int i = 0; i < Mathf.Floor(currentLevel / 4); i++)
+          {
+            marbleDistribution[i] = "blocker";
+          }
+        }
+        if (Mathf.Floor((currentLevel - 4) / 2) <= 4 && currentLevel > 3) {
+          int mediumSpeedCounter = 0;
+          for (int i = 0; mediumSpeedCounter < Mathf.Floor((currentLevel - 3) / 2) && i < marbleDistribution.Length; i++)
+          {
+            if (marbleDistribution[i] == null) {
+              marbleDistribution[i] = "mediumSpeed";
+              mediumSpeedCounter++;
             }
           }
-          for (int i = 0; i < marbleDistribution.Length; i++) {
-            if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
+        }
+        if (Mathf.Floor((currentLevel - 7) / 3) <= 4 && currentLevel > 7) {
+          int mediumSpeedCounter = 0;
+          for (int i = 0; mediumSpeedCounter < Mathf.Floor((currentLevel - 7) / 3) && i < marbleDistribution.Length; i++)
+          {
+            if (marbleDistribution[i] == null) {
+              marbleDistribution[i] = "heighSpeed";
+              mediumSpeedCounter++;
+            }
           }
-          objManager.spawnSphere(0, 0, marbleDistribution);
+        }
+        if (currentLevel > 7) marbleDistribution[sphereCount - 4] = "breaking";
+        if (currentLevel > 5) marbleDistribution[sphereCount - 1] = "littleBounce";
+        if (currentLevel > 9) marbleDistribution[sphereCount - 2] = "mediumBounce";
+        if (currentLevel > 13) marbleDistribution[sphereCount - 3] = "muchBounce";
+        for (int i = 0; i < marbleDistribution.Length; i++) {
+          if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
+        }
+        objManager.spawnSphere(0, 0, marbleDistribution);
       }
     }
 }

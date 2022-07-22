@@ -6,6 +6,9 @@ public class marbleParams : MonoBehaviour
 {
     public bool reachedGround = false;
     public string type;
+    public float speed;
+    private Vector3 positionBefore;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +17,8 @@ public class marbleParams : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+      speed = Vector3.Distance(positionBefore, gameObject.transform.position);
+      positionBefore = gameObject.transform.position;
     }
     IEnumerator setReachedGround()
     {

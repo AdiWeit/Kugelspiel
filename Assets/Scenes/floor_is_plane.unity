@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &31260039
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -313,6 +313,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaterial: {fileID: 2100000, guid: 2e9256d17433706609df74804d8f8570, type: 2}
   blockerMaterial: {fileID: 2100000, guid: fc22a107b696e796ab6218a97ed5d81a, type: 2}
+  breakingMaterial: {fileID: 2100000, guid: c2b80ac7fc0013bb1897484e73128126, type: 2}
+  mediumSpeedMaterial: {fileID: 2100000, guid: 69a5f2d5e1544c399b22569dc485d0b1, type: 2}
+  heightSpeedMaterial: {fileID: 2100000, guid: 378cacf8391d7624a87867be933dfbdf, type: 2}
+  littleBounceMaterial: {fileID: 2100000, guid: 6f759c07220980313be98af4f4c1ef58, type: 2}
+  mediumBounceMaterial: {fileID: 2100000, guid: 3ee60cea28d4b78a2af50c65aef3c1e4, type: 2}
+  muchBounceMaterial: {fileID: 2100000, guid: 2ee080a9554597e91aa0a2a9204b33ef, type: 2}
+  bouncePhysicMaterial: {fileID: 13400000, guid: 23e797d9343ab80d6a73e4e7a789fcbe, type: 2}
   sphereReference: {fileID: 2413374920935079475, guid: 5aa2922531b6ee7bba8dd855df390329, type: 3}
   movingCube: {fileID: 1394450144}
   liveManager: {fileID: 75199422}
@@ -2286,7 +2293,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23926
+  m_Name: pb_Mesh23924
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2658,7 +2665,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23814
+  m_Name: pb_Mesh23818
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3005,7 +3012,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23904
+  m_Name: pb_Mesh23902
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3854,6 +3861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphereCount: 1
   inGoalCount: 0
+  waitBlockedDisapears: 0
   scoreObj: {fileID: 985867329}
   instructionsText: {fileID: 976561618}
   objManager: {fileID: 142792476}
@@ -7665,7 +7673,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23942
+  m_Name: pb_Mesh23940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9786,7 +9794,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23888
+  m_Name: pb_Mesh23886
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11899,7 +11907,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23988
+  m_Name: pb_Mesh23986
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12073,7 +12081,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23970
+  m_Name: pb_Mesh23968
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

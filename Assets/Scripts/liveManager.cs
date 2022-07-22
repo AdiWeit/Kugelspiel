@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class liveManager : MonoBehaviour
 {
-    private int lives = 3;
+    private int lives = 5;
     public levelManager levelManager;
     public Text livesText;
     // Start is called before the first frame update
@@ -19,14 +19,21 @@ public class liveManager : MonoBehaviour
     {
         
     }
-    public void takeDamage()
+    public void takeDamage(bool byStuckOne)
     {
+      if (!levelManager.waitBlockedDisapears || byStuckOne) {
       lives--;
       if (lives > 0) levelManager.startLevel(-1, "random");
       else {
         levelManager.startLevel(0, "random");
-        lives = 3;
+        lives = 5;
       }
+      livesText.text = lives + " lives";
+      }
+    }
+    public void getLive()
+    {
+      lives++;
       livesText.text = lives + " lives";
     }
 }
