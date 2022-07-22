@@ -118,7 +118,6 @@ public class levelManager : MonoBehaviour
             }
           }
         }
-        if (currentLevel > 7) marbleDistribution[sphereCount - 4] = "breaking";
         if (currentLevel > 5 && currentLevel <= 9) marbleDistribution[sphereCount - 1] = "littleBounce";
         if (currentLevel > 9 && currentLevel <= 13) marbleDistribution[sphereCount - 2] = "mediumBounce";
         if (currentLevel > 13) marbleDistribution[sphereCount - 3] = "muchBounce";

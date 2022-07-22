@@ -19,7 +19,7 @@ public class marbleKilledCheck : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-      if (other.gameObject.GetComponent<marbleParams>()?.type == "enemy" || (other.gameObject.GetComponent<marbleParams>()?.type == "breaking" && (other.gameObject.GetComponent<marbleParams>().speed > 0.5 || gameObject.GetComponent<marbleParams>().speed > 0.5)))
+      if (other.gameObject.GetComponent<marbleParams>()?.type == "enemy"/* || (gameObject.GetComponent<marbleParams>().reachedGround && gameObject.GetComponent<marbleParams>()?.type == "breaking" && (other.gameObject.GetComponent<marbleParams>()?.speed > 0.02 || gameObject.GetComponent<marbleParams>().speed > 0.02))*/)
       {
         Debug.Log("Restart level because enemy touched marble or marble collided too hard!");
         liveManager.takeDamage(false);

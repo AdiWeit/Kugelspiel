@@ -6,7 +6,6 @@ public class objectManager : MonoBehaviour
 {
     public Material enemyMaterial;
     public Material blockerMaterial;
-    public Material breakingMaterial;
     public Material mediumSpeedMaterial;
     public Material heightSpeedMaterial;
     public Material littleBounceMaterial;
@@ -44,7 +43,6 @@ public class objectManager : MonoBehaviour
         newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
         newSphere.GetComponent<marbleParams>().type = type[i];
         if (type[i] == "enemy") newSphere.GetComponent<MeshRenderer>().material = enemyMaterial;
-        if (type[i] == "breaking") newSphere.GetComponent<MeshRenderer>().material = breakingMaterial;
         if (type[i] == "blocker") {
           newSphere.GetComponent<MeshRenderer>().material = blockerMaterial;
           newSphere.GetComponent<MeshRenderer>().transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
