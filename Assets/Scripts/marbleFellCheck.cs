@@ -8,7 +8,7 @@ public class marbleFellCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+      liveManager = GameObject.Find("liveManager").GetComponent<liveManager>();
     }
 
     // Update is called once per frame

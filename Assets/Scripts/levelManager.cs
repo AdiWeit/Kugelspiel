@@ -27,6 +27,12 @@ public class levelManager : MonoBehaviour
     public bool gameStarted = false;
     void Start()
     {
+      scoreObj = GameObject.Find("scoreText").GetComponent<scoreSystem>();
+      instructionsText = GameObject.Find("gameInstructions").GetComponent<gameInstructions>();
+      objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
+      liveManager = GameObject.Find("liveManager").GetComponent<liveManager>();
+      levelNrText = GameObject.Find("levelNrText").GetComponent<Text>();
+      borderObj = GameObject.Find("border").GetComponent<borderObj>();
     }
 
     // Update is called once per frame

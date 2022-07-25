@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reachedGround: 0
   type: 
-  speed: 0
+  speed: 5
 --- !u!114 &4174751113442205780
 MonoBehaviour:
   m_ObjectHideFlags: 0

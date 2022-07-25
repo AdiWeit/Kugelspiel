@@ -18,7 +18,7 @@ public class objectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-          
+      
     }
 
     // Update is called once per frame
@@ -39,32 +39,36 @@ public class objectManager : MonoBehaviour
         if (type[i] == "muchBounce") position.y = 3.5f + movingCube.transform.rotation.y;
         // if (type[i].Contains("Bounce")) Debug.Break();
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
-        newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
-        newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
-        newSphere.GetComponent<marbleParams>().type = type[i];
-        if (type[i] == "enemy") newSphere.GetComponent<MeshRenderer>().material = enemyMaterial;
-        if (type[i] == "blocker") {
-          newSphere.GetComponent<MeshRenderer>().material = blockerMaterial;
-          newSphere.GetComponent<MeshRenderer>().transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-        }
-        if (type[i] == "mediumSpeed") {
-          newSphere.GetComponent<MeshRenderer>().material = mediumSpeedMaterial;
-          newSphere.GetComponent<Rigidbody>().maxAngularVelocity = 33;
-        }
-        if (type[i] == "heighSpeed") {
-          newSphere.GetComponent<MeshRenderer>().material = heightSpeedMaterial;
-          newSphere.GetComponent<Rigidbody>().maxAngularVelocity = 55;
-        }
-        if (type[i].Contains("Bounce")) newSphere.GetComponent<SphereCollider>().material = bouncePhysicMaterial;
-        if (type[i] == "littleBounce") {
-          newSphere.GetComponent<MeshRenderer>().material = littleBounceMaterial;
-        }
-        if (type[i] == "mediumBounce") {
-          newSphere.GetComponent<MeshRenderer>().material = mediumBounceMaterial;
-        }
-        if (type[i] == "muchBounce") {
-          newSphere.GetComponent<MeshRenderer>().material = muchBounceMaterial;
-        }
+        // newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
+        // newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
+        transformMarbleToType(newSphere, true, type[i]);
+      }
+    }
+    public void transformMarbleToType(GameObject marble, bool randomLevel, string type)
+    {
+      marble.GetComponent<marbleParams>().type = type;
+      if (type == "enemy") marble.GetComponent<MeshRenderer>().material = enemyMaterial;
+      if (type == "blocker") {
+        marble.GetComponent<MeshRenderer>().material = blockerMaterial;
+        marble.GetComponent<MeshRenderer>().transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+      }
+      if (type == "mediumSpeed") {
+        marble.GetComponent<MeshRenderer>().material = mediumSpeedMaterial;
+        marble.GetComponent<Rigidbody>().maxAngularVelocity = 33;
+      }
+      if (type == "heighSpeed") {
+        marble.GetComponent<MeshRenderer>().material = heightSpeedMaterial;
+        marble.GetComponent<Rigidbody>().maxAngularVelocity = 55;
+      }
+      if (type.Contains("Bounce")) marble.GetComponent<SphereCollider>().material = bouncePhysicMaterial;
+      if (type == "littleBounce") {
+        marble.GetComponent<MeshRenderer>().material = littleBounceMaterial;
+      }
+      if (type == "mediumBounce") {
+        marble.GetComponent<MeshRenderer>().material = mediumBounceMaterial;
+      }
+      if (type == "muchBounce") {
+        marble.GetComponent<MeshRenderer>().material = muchBounceMaterial;
       }
     }
 }

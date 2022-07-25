@@ -10,7 +10,7 @@ public class marbleBlocking : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+      goalManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
     }
 
     // Update is called once per frame

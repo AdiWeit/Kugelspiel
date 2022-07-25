@@ -9,7 +9,8 @@ public class marbleKilledCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+      liveManager = GameObject.Find("liveManager").GetComponent<liveManager>();
+      marbleParams = gameObject.GetComponent<marbleParams>();
     }
 
     // Update is called once per frame

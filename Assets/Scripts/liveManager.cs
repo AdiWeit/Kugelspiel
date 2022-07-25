@@ -11,7 +11,8 @@ public class liveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+      levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
+      livesText = GameObject.Find("livesText").GetComponent<Text>();
     }
 
     // Update is called once per frame

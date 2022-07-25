@@ -8,7 +8,7 @@ public class glitchDetection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+      objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
     }
 
     // Update is called once per frame
