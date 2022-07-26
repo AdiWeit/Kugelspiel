@@ -23,6 +23,7 @@ public class gameInstructions : MonoBehaviour
       else if (pLevel == 4) instructions.text = "Don't let the big gray one block your hole! It has to come in last!";
       else instructions.text = "";
     }
+    // for mobile debugging
     public void showText(string text) {
       instructions.text = text;
     }
