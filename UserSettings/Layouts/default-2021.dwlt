@@ -215,8 +215,8 @@ MonoBehaviour:
     y: 0
     width: 905
     height: 645
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -346,22 +346,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/skyboxes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/skyboxes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /home/adi/Data/Adi/Unity Projekte/3D/Kugelspiel
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b05e0000
-    m_LastClickedID: 24240
-    m_ExpandedIDs: 00000000ac5e0000ae5e0000b05e0000b25e0000b45e000000ca9a3b
+    m_SelectedIDs: 527c0000
+    m_LastClickedID: 31826
+    m_ExpandedIDs: 00000000a45e0000a65e0000a85e0000aa5e0000ac5e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -389,7 +389,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ac5e0000ae5e0000b05e0000b25e0000b45e0000
+    m_ExpandedIDs: 00000000a45e0000a65e0000a85e0000aa5e0000ac5e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -478,7 +478,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0464ffff5264ffff2666ffff2c66ffffca66ffffd866ffffaa68fffff868ffffcc6affffd26affff706bffff7e6bffff206dffff6e6dffff426fffff486fffffe66ffffff46fffff7074ffffbe74ffff9276ffff9876ffff3677ffff4477ffff4279ffff9079ffff647bffff6a7bffff087cffff167cffffce7dffff1c7efffff07ffffff67fffff9480ffffa280ffff1082ffff5e82ffff3284ffff3884ffffd684ffffe484ffff8e86ffffdc86ffffb088ffffb688ffff5489ffff6289ffffe48affff328bffff068dffff0c8dffffaa8dffffb88dffff2e8fffff7c8fffff5091ffff5691fffff491ffff0292ffff1e95ffff6c95ffff4097ffff4697ffffe497fffff297ffff669bffffb49bffff889dffff8e9dffff2c9effff3a9effffb89fffff06a0ffffdaa1ffffe0a1ffff7ea2ffff8ca2fffffea6ffff4ca7ffff20a9ffff26a9ffffc4a9ffffd2a9ffff8aafffffd8afffffacb1ffffb2b1ffff50b2ffff5eb2ffff10b4ffff5eb4ffff32b6ffff38b6ffffd6b6ffffe4b6ffff8cb8ffffdab8ffffaebaffffb4baffff52bbffff60bbffff0abdffff58bdffff2cbfffff32bfffffd0bfffffdebfffff02c2ffff50c2ffff24c4ffff2ac4ffffc8c4ffffd6c4ffff64c6ffffb2c6ffff86c8ffff8cc8ffff2ac9ffff38c9ffff90ccffffdeccffffb2ceffffb8ceffff56cfffff64cfffff0ed1ffff5cd1ffff30d3ffff36d3ffffd4d3ffffe2d3ffff68d5ffffb6d5ffff8ad7ffff90d7ffff2ed8ffff3cd8ffff3edaffff8cdaffff60dcffff66dcffff04ddffff12ddffff46e2ffff94e2ffff68e4ffff6ee4ffff0ce5ffff1ae5ffff6ae8ffffb8e8ffff8ceaffff92eaffff30ebffff3eebffff32edffff80edffff54efffff5aeffffff8efffff06f0fffff6f2ffff44f3ffff18f5ffff1ef5ffffbcf5ffffcaf5ffff32fbffff
+      m_ExpandedIDs: 321effff801effff5420ffff5a20fffff820ffff0621ffff9e22ffffec22ffffc024ffffc624ffff6425ffff7225ffff0027ffff4e27ffff2229ffff2829ffffc629ffffd429ffff4a2bffff982bffff6c2dffff722dffff102effff1e2effffb82fffff0630ffffda31ffffe031ffff7e32ffff8c32ffff9e34ffffec34ffffc036ffffc636ffff6437ffff7237ffff0039ffff4e39ffff223bffff283bffffc63bffffd43bffff743dffffc23dffff963fffff9c3fffff3a40ffff4840ffffb241ffff0042ffffd443ffffda43ffff7844ffff8644ffff4246ffff9046ffff6448ffff6a48ffff0849ffff1649ffffb64affff044bffffd84cffffde4cffff7c4dffff8a4dffff324fffff804fffff5451ffff5a51fffff851ffff0652ffff7e53ffffcc53ffffa055ffffa655ffff4456ffff5256ffffd257ffff2058fffff459fffffa59ffff985affffa65affffe65cffff345dffff085fffff0e5fffffac5fffffba5fffffda61ffff2862fffffc63ffff0264ffffa064ffffae64ffff2666ffff7466ffff4868ffff4e68ffffec68fffffa68ffffae6afffffc6affffd06cffffd66cffff746dffff826dffff366fffff846fffff5871ffff5e71fffffc71ffff0a72ffff9673ffffe473ffffb875ffffbe75ffff5c76ffff6a76ffff6a78ffffb878ffff8c7affff927affff307bffff3e7bffffd27cffff207dfffff47efffffa7effff987fffffa67fffff6e81ffffbc81ffff9083ffff9683ffff3484ffff4284ffff0286ffff5086ffff2488ffff2a88ffffc888ffffd688ffff4a8affff988affff6c8cffff728cffff108dffff1e8dffff348fffff828fffff5691ffff5c91fffffa91ffff0892ffff9493ffffe293ffffb695ffffbc95ffff5a96ffff6896ffffa098ffffee98ffffc29affffc89affff669bffff749bffff389dffff869dffff5a9fffff609ffffffe9fffff0ca0ffff80a1ffffcea1ffffa2a3ffffa8a3ffff46a4ffff54a4fffffca5ffff4aa6ffff1ea8ffff24a8ffffc2a8ffffd0a8ffff7caaffffcaaaffff9eacffffa4acffff42adffff50adffffceaeffff1caffffff0b0fffff6b0ffff94b1ffffa2b1ffff56b3ffffa4b3ffff78b5ffff7eb5ffff1cb6ffff2ab6fffff2b7ffff40b8ffff14baffff1abaffffb8baffffc6baffff6abcffffb8bcffff8cbeffff92beffff30bfffff3ebfffffc8c0ffff16c1ffffeac2fffff0c2ffff8ec3ffff9cc3ffff44c5ffff92c5ffff66c7ffff6cc7ffff0ac8ffff18c8ffffc4c9ffff12caffffe6cbffffeccbffff8accffff98ccffff90ceffffdeceffffd4d0fffffcd0ffffbcd1ffffecd1ffff2cd4ffff7ad4ffff4ed6ffff54d6fffff2d6ffff00d7ffff06d9ffff54d9ffff28dbffff2edbffffccdbffffdadbffff7eddffffccddffffa0dfffffa6dfffff44e0ffff52e0fffffee1ffff4ce2ffff20e4ffff26e4ffffc4e4ffffd2e4ffff72e6ffffc0e6ffff94e8ffff9ae8ffff38e9ffff46e9fffff2eaffff40ebffff14edffff1aedffffb8edffffc6edffff8aefffffd8efffffacf1ffffb2f1ffff50f2ffff5ef2ffff08f6ffff56f6ffff2af8ffff30f8ffffcef8ffffdcf8ffff32fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

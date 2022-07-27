@@ -10,11 +10,12 @@ public class sizeText : MonoBehaviour
   private float _oldHeight;
   private float _fontSize;
   private float presetFontSize = 14;
-  public float Ratio = 1;
+  public float Ratio = 10;
+  // private bool positionUpdated = false;
     // Start is called before the first frame update
     void Start()
     {
-
+      Debug.Log(Screen.width + " - " + Screen.height);
     }
 
     // Update is called once per frame
@@ -35,5 +36,9 @@ void OnGUI() {
     // your GUI.TextField here
     // GUI.skin.textField.fontSize = 50;
     gameObject.GetComponent<Text>().fontSize = (int) _fontSize;
+    // if (!positionUpdated) {
+    //   gameObject.GetComponent<RectTransform>().position += new Vector3 ((int) _fontSize + Ratio, 0, 0);
+    //   positionUpdated = true;
+    // }
 }
 }
