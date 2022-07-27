@@ -6,6 +6,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class levelManager : MonoBehaviour
 {
@@ -19,8 +20,10 @@ public class levelManager : MonoBehaviour
     public gameInstructions instructionsText;
     public objectManager objManager;
     public liveManager liveManager;
+    public loadLevel levelLoader;
     public Text levelNrText;
     public borderObj borderObj;
+    public bool random = true;
     private Vector3 borderStartingPosition;
 
     // Start is called before the first frame update
@@ -33,6 +36,7 @@ public class levelManager : MonoBehaviour
       liveManager = GameObject.Find("liveManager").GetComponent<liveManager>();
       levelNrText = GameObject.Find("levelNrText").GetComponent<Text>();
       borderObj = GameObject.Find("border").GetComponent<borderObj>();
+      levelLoader = GameObject.Find("levelLoader").GetComponent<loadLevel>();
     }
 
     // Update is called once per frame
@@ -50,13 +54,20 @@ public class levelManager : MonoBehaviour
         }
         Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");
         if (inGoalCount == sphereCount) {
-          sphereCount++;
-          scoreObj.goalReached();
-          currentLevel++;
-          liveManager.getLive();
-          Debug.Log((currentLevel + 1) + ". Level reached!");
-          instructionsText.levelDone(currentLevel);
-          startLevel(currentLevel, "random");
+          Debug.Log("random levels: " + random);
+          if (random) {
+           sphereCount++;
+           scoreObj.goalReached();
+           currentLevel++;
+           liveManager.getLive();
+           Debug.Log((currentLevel + 1) + ". Level reached!");
+           instructionsText.levelDone(currentLevel);
+           startLevel(currentLevel, "random");
+          } 
+          else {
+            Debug.Log("Trying to load level Nr. " + (int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]) + 1));
+            levelLoader.LoadLevel(int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]) + 1);
+          }
         }
       }
       else if (!waitBlockedDisapears) {

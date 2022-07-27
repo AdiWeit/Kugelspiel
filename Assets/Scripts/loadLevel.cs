@@ -21,9 +21,17 @@ public class loadLevel : MonoBehaviour
       // name/string possible
       Debug.Log("opening scene " + "level_" + levelNr);
       SceneManager.LoadScene("level_" + levelNr);
+      StartCoroutine(manageModeSelection(false));
+
     }
     public void beginEndlessRun()
     {
       SceneManager.LoadScene("endlessRunner");
+      StartCoroutine(manageModeSelection(true));
+    }
+    IEnumerator manageModeSelection(bool random)
+    {
+      yield return new WaitForSeconds(1);
+      GameObject.Find("goal_hitbox").GetComponent<levelManager>().random = random;
     }
 }
