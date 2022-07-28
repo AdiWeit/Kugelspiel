@@ -22,6 +22,7 @@ public class movePlane : MonoBehaviour
       // instructionsText.levelDone(0);
       if (SystemInfo.supportsGyroscope) Input.gyro.enabled = true;
       else Input.gyro.enabled = false;
+      if (!SceneManager.GetActiveScene().name.Contains("level")) objManager.spawnSphere(0, 0, "normal");
     }
 
     // Update is called once per frame
@@ -50,13 +51,10 @@ public class movePlane : MonoBehaviour
     }
     private void beginGame()
     {
-      if (!SceneManager.GetActiveScene().name.Contains("level")) objManager.spawnSphere(0, 0, "normal");
-      else {
         foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
         {
           marble.GetComponent<Rigidbody>().useGravity = true;
         }
-      }
       levelManager.gameStarted = true;
       if (!Input.gyro.enabled && (levelManager.random || SceneManager.GetActiveScene().name == "level_1")) instructionsText.levelDone(0);
     }

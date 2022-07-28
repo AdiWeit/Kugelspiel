@@ -143,6 +143,10 @@ public class levelManager : MonoBehaviour
           if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
         }
         objManager.spawnSphere(0, 0, marbleDistribution);
+        foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
+        {
+          StartCoroutine(marble.GetComponent<marbleParams>().setGravity(true));
+        }
       }
       else {
         Debug.Log(GameObject.FindGameObjectsWithTag("marble").Length + " marbles in this level!");

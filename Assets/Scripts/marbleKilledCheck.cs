@@ -22,7 +22,7 @@ public class marbleKilledCheck : MonoBehaviour
     {
       if (other.gameObject.GetComponent<marbleParams>()?.type == "enemy")
       {
-        Debug.Log("Restart level because enemy touched marble or marble collided too hard!");
+        Debug.Log("Restart level because enemy touched marble!");
         liveManager.takeDamage(false);
       }
     }
