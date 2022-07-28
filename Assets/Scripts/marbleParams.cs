@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class marbleParams : MonoBehaviour
 {
-    public bool reachedGround = false;
     public string type = "normal";
     public int speed = 5;
     private Vector3 positionBefore;
@@ -13,7 +12,6 @@ public class marbleParams : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      StartCoroutine("setReachedGround");
       gameObject.GetComponent<Rigidbody>().maxAngularVelocity = speed;
       if (SceneManager.GetActiveScene().name.Contains("level")) {
         GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, false, type);
@@ -25,9 +23,9 @@ public class marbleParams : MonoBehaviour
     {
       positionBefore = gameObject.transform.position;
     }
-    IEnumerator setReachedGround()
+    public IEnumerator setGravity(bool pUseGravity)
     {
-      yield return new WaitForSeconds(5);
-      reachedGround = true;
+      yield return new WaitForSeconds(0.5f);
+      if (gameObject) gameObject.GetComponent<Rigidbody>().useGravity = pUseGravity;
     }
 }

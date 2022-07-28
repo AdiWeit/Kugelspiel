@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class loadLevel : MonoBehaviour
 {
     // Start is called before the first frame update
+    private levelManager levelManager = new levelManager();
+    private movePlane planeMovement = new movePlane();
     void Start()
     {
       DontDestroyOnLoad(gameObject);
@@ -19,19 +21,46 @@ public class loadLevel : MonoBehaviour
     public void LoadLevel(int levelNr)
     {
       // name/string possible
-      Debug.Log("opening scene " + "level_" + levelNr);
-      SceneManager.LoadScene("level_" + levelNr);
-      StartCoroutine(manageModeSelection(false));
-
+      Debug.Log("Try to open scene " + "level_" + levelNr);
+      if (SceneUtility.GetBuildIndexByScenePath("level_" + levelNr) >= 0) {
+        StartCoroutine(manageModeSelection(false, levelNr, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
+        SceneManager.LoadScene("level_" + levelNr);
+      }
+      else {
+        // TODO: handle
+        Debug.Log("Level should be last one!");
+      }
     }
     public void beginEndlessRun()
     {
+      StartCoroutine(manageModeSelection(true, 0, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
       SceneManager.LoadScene("endlessRunner");
-      StartCoroutine(manageModeSelection(true));
     }
-    IEnumerator manageModeSelection(bool random)
+    IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition)
     {
+      // yield return new WaitForSeconds(0.1f);
+      yield return new WaitForSeconds(0.01f);
+      levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
+      planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
+      planeMovement.startPosition = pStartPosition;
+      // set startPosition
+      levelManager.gameStarted = gameStarted;
+      levelManager.sphereCount = pSphereCount;
       yield return new WaitForSeconds(1);
-      GameObject.Find("goal_hitbox").GetComponent<levelManager>().random = random;
+      levelManager.random = random;
+      if (Input.gyro.enabled) {
+        GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
+      }
+      if (!random) {
+        if (levelManager.gameStarted)
+        {
+          levelManager.startLevel(levelNr);
+          foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
+          {
+            marble.GetComponent<Rigidbody>().useGravity = true;
+          }
+        }
+        levelManager.currentLevel = levelNr; 
+      }
     }
 }

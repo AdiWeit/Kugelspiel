@@ -27,7 +27,7 @@ public class objectManager : MonoBehaviour
         
     }
     
-    public void spawnSphere(float x, float z, params string[] type)
+    public GameObject spawnSphere(float x, float z, params string[] type)
     {
       Quaternion rotation = new Quaternion(0, 0, 0, 0);
       for (int i = 0; i < type.Length; i++)
@@ -42,7 +42,9 @@ public class objectManager : MonoBehaviour
         // newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
         // newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
         transformMarbleToType(newSphere, true, type[i]);
+        if (type.Length == 1) return newSphere;
       }
+      return new GameObject();
     }
     public void transformMarbleToType(GameObject marble, bool randomLevel, string type)
     {

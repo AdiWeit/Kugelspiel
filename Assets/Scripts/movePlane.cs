@@ -11,16 +11,17 @@ public class movePlane : MonoBehaviour
     public objectManager objManager;
     private float motionSpeed = 80f;
     public float smoothness = 1.5f;
-    Vector3 startPosition; 
-    Vector3 rotationPosition;
+    public Vector3 startPosition; 
+    public Vector3 rotationPosition;
     // Start is called before the first frame update
     void Start()
     {
       levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
       instructionsText = GameObject.Find("gameInstructions").GetComponent<gameInstructions>();
       objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
-      instructionsText.levelDone(0);
-      Input.gyro.enabled = true;
+      // instructionsText.levelDone(0);
+      if (SystemInfo.supportsGyroscope) Input.gyro.enabled = true;
+      else Input.gyro.enabled = false;
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class movePlane : MonoBehaviour
         Debug.Log("Set start position");
         if (SystemInfo.deviceType == DeviceType.Handheld && !levelManager.gameStarted) beginGame();
       }
-      if (SystemInfo.deviceType == DeviceType.Handheld && Input.gyro.enabled) {
+      if (Input.gyro.enabled) {
         // instructionsText.showText(Input.gyro.gravity.ToString());
         rotationPosition = Input.gyro.gravity*motionSpeed;
       }
@@ -45,7 +46,6 @@ public class movePlane : MonoBehaviour
         0,
         -rotationPosition.x
 );
-      // instructionsText.showText("new transformed angles: " + transform.transform.eulerAngles.ToString());
       }
     }
     private void beginGame()
@@ -56,8 +56,8 @@ public class movePlane : MonoBehaviour
         {
           marble.GetComponent<Rigidbody>().useGravity = true;
         }
-      } 
+      }
       levelManager.gameStarted = true;
-      instructionsText.levelDone(0);
+      if (!Input.gyro.enabled && (levelManager.random || SceneManager.GetActiveScene().name == "level_1")) instructionsText.levelDone(0);
     }
 }

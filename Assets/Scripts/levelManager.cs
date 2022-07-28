@@ -11,10 +11,10 @@ using UnityEngine.SceneManagement;
 public class levelManager : MonoBehaviour
 {
     // public int sphereCount = 8;
-    public int sphereCount = 0;
+    public int sphereCount = 1;
     public int inGoalCount = 0;
     // private int currentLevel = 7;
-    private int currentLevel = 0;
+    public int currentLevel = 0;
     public bool waitBlockedDisapears = false;
     public scoreSystem scoreObj;
     public gameInstructions instructionsText;
@@ -55,18 +55,17 @@ public class levelManager : MonoBehaviour
         Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");
         if (inGoalCount == sphereCount) {
           Debug.Log("random levels: " + random);
+          currentLevel++;
           if (random) {
            sphereCount++;
            scoreObj.goalReached();
-           currentLevel++;
            liveManager.getLive();
            Debug.Log((currentLevel + 1) + ". Level reached!");
            instructionsText.levelDone(currentLevel);
-           startLevel(currentLevel, "random");
+           startLevel(currentLevel);
           } 
           else {
-            Debug.Log("Trying to load level Nr. " + (int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]) + 1));
-            levelLoader.LoadLevel(int.Parse(SceneManager.GetActiveScene().name.Split("_")[1]) + 1);
+            levelLoader.LoadLevel(currentLevel);
           }
         }
       }
@@ -86,11 +85,16 @@ public class levelManager : MonoBehaviour
     {
       goalReached(other.gameObject);
     }
-    public void startLevel(int number, string type) 
+    public void startLevel(int number) 
     {
-      if (number == -1) number = currentLevel;
+      inGoalCount = 0;
+      if (random) {
       if (number == 0) {
-        Debug.Log("restart with first level");
+        number = currentLevel;
+        if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);
+      }
+      if (number == -1) {
+        Debug.Log("restart with level before");
         if (currentLevel > 0) {
           currentLevel--;
           sphereCount--;
@@ -98,14 +102,11 @@ public class levelManager : MonoBehaviour
         }
       }
       // reset level
-      else if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);
       levelNrText.text = (currentLevel + 1 + ". level");
       foreach (GameObject obj in GameObject.FindGameObjectsWithTag("marble"))
       {
         Destroy(obj);
       }
-      inGoalCount = 0;
-      if (type == "random") {
         string[] marbleDistribution = new string [sphereCount];
         // manage marble type distribution (Verteilung)
         if (currentLevel < 4 && currentLevel > 0) marbleDistribution[0] = "enemy";
@@ -142,6 +143,10 @@ public class levelManager : MonoBehaviour
           if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
         }
         objManager.spawnSphere(0, 0, marbleDistribution);
+      }
+      else {
+        Debug.Log(GameObject.FindGameObjectsWithTag("marble").Length + " marbles in this level!");
+        sphereCount = GameObject.FindGameObjectsWithTag("marble").Length;
       }
     }
 }

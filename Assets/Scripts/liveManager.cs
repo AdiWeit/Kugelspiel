@@ -12,7 +12,7 @@ public class liveManager : MonoBehaviour
     void Start()
     {
       levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
-      livesText = GameObject.Find("livesText").GetComponent<Text>();
+      if (GameObject.Find("livesText")) livesText = GameObject.Find("livesText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -22,19 +22,20 @@ public class liveManager : MonoBehaviour
     }
     public void takeDamage(bool byStuckOne)
     {
-      if (!levelManager.waitBlockedDisapears || byStuckOne) {
+      if ((!levelManager.waitBlockedDisapears || byStuckOne) && levelManager.random) {
       lives--;
-      if (lives > 0) levelManager.startLevel(-1, "random");
+      if (lives > 0) levelManager.startLevel(0);
       else {
-        levelManager.startLevel(0, "random");
+        levelManager.startLevel(-1);
         lives = 5;
       }
-      livesText.text = lives + " lives";
+      if (livesText) livesText.text = lives + " lives";
       }
+      if (!levelManager.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel);
     }
     public void getLive()
     {
       lives++;
-      livesText.text = lives + " lives";
+      if (livesText) livesText.text = lives + " lives";
     }
 }

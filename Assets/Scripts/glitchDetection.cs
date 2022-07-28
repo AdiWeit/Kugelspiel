@@ -19,7 +19,8 @@ public class glitchDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
       Debug.Log("sphere glitched! new one is spawning!");
-      objManager.spawnSphere(-0.52f, -0.5f, other.gameObject.GetComponent<marbleParams>().type);
+      GameObject newSphere = objManager.spawnSphere(-0.52f, -0.5f, other.gameObject.GetComponent<marbleParams>().type);
       Destroy(other.gameObject);
+      StartCoroutine(newSphere.GetComponent<marbleParams>().setGravity(true));
     }
 }

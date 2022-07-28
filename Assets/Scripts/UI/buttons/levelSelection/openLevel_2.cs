@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class openLevel_1 : MonoBehaviour
+public class openLevel_2 : MonoBehaviour
 {
     public loadLevel levelLoader;
     // Start is called before the first frame update
