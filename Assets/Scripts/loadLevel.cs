@@ -46,10 +46,10 @@ public class loadLevel : MonoBehaviour
       // set startPosition
       levelManager.gameStarted = gameStarted;
       levelManager.sphereCount = pSphereCount;
+      if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
       if (Input.gyro.enabled && levelNr == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
-      if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
       yield return new WaitForSeconds(1);
       levelManager.random = random;
       if (!random) {
