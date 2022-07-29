@@ -53,9 +53,9 @@ public class loadLevel : MonoBehaviour
       yield return new WaitForSeconds(1);
       levelManager.random = random;
       if (!random) {
+        levelManager.startLevel(levelNr);
         if (levelManager.gameStarted)
         {
-          levelManager.startLevel(levelNr);
           foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
           {
             marble.GetComponent<Rigidbody>().useGravity = true;
