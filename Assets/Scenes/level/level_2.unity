@@ -1117,8 +1117,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "(left) click to set the \nneutral rotation position to your current mouse
-    position (game starts then) and move the mouse"
+  m_Text: 
 --- !u!222 &1075259899
 CanvasRenderer:
   m_ObjectHideFlags: 0
