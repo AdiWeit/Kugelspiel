@@ -21,6 +21,7 @@ public class gameInstructions : MonoBehaviour
       if (SystemInfo.deviceType == DeviceType.Handheld) {
         if (Input.gyro.enabled) {
           if (pLevel == 0) instructions.text = "Tilt your device like it is the box on the display and navigate the ball into the hole!";
+          else if (pLevel != 1) instructions.text = "";
         }
       }
       else {

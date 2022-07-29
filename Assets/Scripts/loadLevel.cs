@@ -33,7 +33,7 @@ public class loadLevel : MonoBehaviour
     }
     public void beginEndlessRun()
     {
-      StartCoroutine(manageModeSelection(true, 0, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
+      StartCoroutine(manageModeSelection(true, 1, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
       SceneManager.LoadScene("endlessRunner");
     }
     IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition)
@@ -46,9 +46,10 @@ public class loadLevel : MonoBehaviour
       // set startPosition
       levelManager.gameStarted = gameStarted;
       levelManager.sphereCount = pSphereCount;
-      if (Input.gyro.enabled) {
+      if (Input.gyro.enabled && levelNr == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
+      if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
       yield return new WaitForSeconds(1);
       levelManager.random = random;
       if (!random) {

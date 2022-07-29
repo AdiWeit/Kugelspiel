@@ -56,6 +56,6 @@ public class movePlane : MonoBehaviour
           marble.GetComponent<Rigidbody>().useGravity = true;
         }
       levelManager.gameStarted = true;
-      if (!Input.gyro.enabled && (levelManager.random || SceneManager.GetActiveScene().name == "level_1")) instructionsText.levelDone(0);
+      instructionsText.levelDone(0);
     }
 }
