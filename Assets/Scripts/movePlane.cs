@@ -16,7 +16,7 @@ public class movePlane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       instructionsText = GameObject.Find("gameInstructions").GetComponent<gameInstructions>();
       objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
       // instructionsText.levelDone(0);

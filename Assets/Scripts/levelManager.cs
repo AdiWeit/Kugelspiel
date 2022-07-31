@@ -15,6 +15,7 @@ public class levelManager : MonoBehaviour
     public int inGoalCount = 0;
     // private int currentLevel = 7;
     public int currentLevel = 0;
+    
     public bool waitBlockedDisapears = false;
     public scoreSystem scoreObj;
     public gameInstructions instructionsText;
@@ -24,18 +25,15 @@ public class levelManager : MonoBehaviour
     public Text levelNrText;
     public borderObj borderObj;
     private Vector3 borderStartingPosition;
-
     // Start is called before the first frame update
     public bool gameStarted = false;
+    public bool random = true;
+    public string sceneBefore;
     void Start()
     {
-      scoreObj = GameObject.Find("scoreText").GetComponent<scoreSystem>();
-      instructionsText = GameObject.Find("gameInstructions").GetComponent<gameInstructions>();
-      objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
-      liveManager = GameObject.Find("liveManager").GetComponent<liveManager>();
-      levelNrText = GameObject.Find("levelNrText").GetComponent<Text>();
-      borderObj = GameObject.Find("border").GetComponent<borderObj>();
-      levelLoader = GameObject.Find("levelLoader").GetComponent<loadLevel>();
+      levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
+      if (GameObject.FindObjectsOfType<levelManager>().Length > 1) Destroy(gameObject);
+      DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -44,6 +42,10 @@ public class levelManager : MonoBehaviour
       
     }
     public void goalReached(GameObject marble) {
+      scoreObj = GameObject.Find("scoreText")?.GetComponent<scoreSystem>();
+      instructionsText = GameObject.Find("gameInstructions")?.GetComponent<gameInstructions>();
+      liveManager = GameObject.Find("liveManager")?.GetComponent<liveManager>();
+      levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
       if (marble.GetComponent<marbleParams>().type != "blocker" || (marble.GetComponent<marbleParams>().type == "blocker" && GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0))
       {
         Destroy(marble, 0.25f);
@@ -54,7 +56,7 @@ public class levelManager : MonoBehaviour
         Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");
         if (inGoalCount == sphereCount) {
           currentLevel++;
-          if (levelLoader.random) {
+          if (random) {
            sphereCount++;
            scoreObj.goalReached();
            liveManager.getLive();
@@ -79,14 +81,13 @@ public class levelManager : MonoBehaviour
       liveManager.takeDamage(true);
       waitBlockedDisapears = false;
     }
-    private void OnTriggerEnter(Collider other)
-    {
-      goalReached(other.gameObject);
-    }
     public void startLevel(int number) 
     {
+      objManager = GameObject.Find("objectManager")?.GetComponent<objectManager>();
+      levelNrText = GameObject.Find("levelNrText")?.GetComponent<Text>();
+      borderObj = GameObject.Find("border")?.GetComponent<borderObj>();
       inGoalCount = 0;
-      if (levelLoader.random) {
+      if (random) {
       if (number == 0) {
         number = currentLevel;
         if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);
@@ -149,6 +150,7 @@ public class levelManager : MonoBehaviour
       else {
         Debug.Log(GameObject.FindGameObjectsWithTag("marble").Length + " marbles in this level!");
         sphereCount = GameObject.FindGameObjectsWithTag("marble").Length;
+        levelNrText.text = (number + ". level");
       }
     }
 }

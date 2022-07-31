@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class loadLevelSelection : MonoBehaviour
 {
-    private loadLevel levelLoader;
+    private levelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +20,10 @@ public class loadLevelSelection : MonoBehaviour
     }
     public void clicked()
     {
-      levelLoader = GameObject.Find("levelLoader").GetComponent<loadLevel>();
-      if (levelLoader.random) {
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
+      if (levelManager.random) {
         SceneManager.LoadScene("mainMenu");
-        levelLoader.random = false;
+        levelManager.random = false;
       }
       else SceneManager.LoadScene("levelSelection");
     }

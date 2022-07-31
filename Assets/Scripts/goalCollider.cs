@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class pause : MonoBehaviour
+public class goalCollider : MonoBehaviour
 {
     // Start is called before the first frame update
     private levelManager levelManager;
@@ -19,10 +16,8 @@ public class pause : MonoBehaviour
     {
         
     }
-    public void pauseGame()
+    private void OnTriggerEnter(Collider other)
     {
-      levelManager.sceneBefore = SceneManager.GetActiveScene().name;
-      levelManager.gameStarted = false;
-      SceneManager.LoadScene("settings");
+      levelManager.goalReached(other.gameObject);
     }
 }

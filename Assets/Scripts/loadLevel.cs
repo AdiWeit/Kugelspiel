@@ -8,7 +8,6 @@ public class loadLevel : MonoBehaviour
     // Start is called before the first frame update
     private levelManager levelManager = new levelManager();
     private movePlane planeMovement = new movePlane();
-    public bool random = true;
     void Start()
     {
       DontDestroyOnLoad(gameObject);
@@ -37,13 +36,18 @@ public class loadLevel : MonoBehaviour
     {
       StartCoroutine(manageModeSelection(true, 1, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
       SceneManager.LoadScene("endlessRunner");
-      random = true;
+      levelManager.random = true;
+    }
+    public void loadSceneByString(string pString)
+    {
+      SceneManager.LoadScene(pString);
+      StartCoroutine(manageModeSelection(levelManager.random, levelManager.currentLevel, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
     }
     IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition)
     {
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
-      levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
       planeMovement.startPosition = pStartPosition;
       // set startPosition

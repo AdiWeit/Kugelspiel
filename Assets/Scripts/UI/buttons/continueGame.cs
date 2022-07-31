@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class continueGame : MonoBehaviour
 {
+    private levelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,9 @@ public class continueGame : MonoBehaviour
     }
     public void continueGameF()
     {
-      
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
+      Debug.Log("reopen " + levelManager.sceneBefore);
+      Debug.Log("levelManager: " + levelManager.levelLoader);
+      levelManager.levelLoader.loadSceneByString(levelManager.sceneBefore);
     }
 }

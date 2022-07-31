@@ -12,7 +12,6 @@ public class liveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      levelManager = GameObject.Find("goal_hitbox").GetComponent<levelManager>();
       if (GameObject.Find("livesText")) livesText = GameObject.Find("livesText").GetComponent<Text>();
       levelLoader = GameObject.Find("levelLoader").GetComponent<loadLevel>();
     }
@@ -24,7 +23,8 @@ public class liveManager : MonoBehaviour
     }
     public void takeDamage(bool byStuckOne)
     {
-      if ((!levelManager.waitBlockedDisapears || byStuckOne) && levelLoader.random) {
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
+      if ((!levelManager.waitBlockedDisapears || byStuckOne) && levelManager.random) {
       lives--;
       if (lives > 0) levelManager.startLevel(0);
       else {
@@ -33,7 +33,7 @@ public class liveManager : MonoBehaviour
       }
       if (livesText) livesText.text = lives + " lives";
       }
-      if (!levelLoader.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel);
+      if (!levelManager.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel);
     }
     public void getLive()
     {
