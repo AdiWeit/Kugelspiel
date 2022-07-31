@@ -8,9 +8,11 @@ public class loadLevel : MonoBehaviour
     // Start is called before the first frame update
     private levelManager levelManager = new levelManager();
     private movePlane planeMovement = new movePlane();
+    public bool random = true;
     void Start()
     {
       DontDestroyOnLoad(gameObject);
+      if (GameObject.FindObjectsOfType<loadLevel>().Length > 1) Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class loadLevel : MonoBehaviour
     {
       StartCoroutine(manageModeSelection(true, 1, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
       SceneManager.LoadScene("endlessRunner");
+      random = true;
     }
     IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition)
     {
@@ -51,7 +54,6 @@ public class loadLevel : MonoBehaviour
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
       yield return new WaitForSeconds(1);
-      levelManager.random = random;
       if (!random) {
         levelManager.startLevel(levelNr);
         if (levelManager.gameStarted)

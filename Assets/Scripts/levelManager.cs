@@ -23,7 +23,6 @@ public class levelManager : MonoBehaviour
     public loadLevel levelLoader;
     public Text levelNrText;
     public borderObj borderObj;
-    public bool random = true;
     private Vector3 borderStartingPosition;
 
     // Start is called before the first frame update
@@ -54,9 +53,8 @@ public class levelManager : MonoBehaviour
         }
         Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");
         if (inGoalCount == sphereCount) {
-          Debug.Log("random levels: " + random);
           currentLevel++;
-          if (random) {
+          if (levelLoader.random) {
            sphereCount++;
            scoreObj.goalReached();
            liveManager.getLive();
@@ -88,7 +86,7 @@ public class levelManager : MonoBehaviour
     public void startLevel(int number) 
     {
       inGoalCount = 0;
-      if (random) {
+      if (levelLoader.random) {
       if (number == 0) {
         number = currentLevel;
         if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);
