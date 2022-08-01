@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &-509705786982339764
+--- !u!21 &-7539309099787737355
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 1
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 75caf5db9f4cb736dab35d699ddf3c78, type: 3}
+        m_Texture: {fileID: 2800000, guid: 669b0da5c0779bf2a80c10108e5da446, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: buttons
   m_EditorClassIdentifier: 
   hashCode: -194847611
-  material: {fileID: -509705786982339764}
+  material: {fileID: -7539309099787737355}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: 75caf5db9f4cb736dab35d699ddf3c78, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 669b0da5c0779bf2a80c10108e5da446, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534

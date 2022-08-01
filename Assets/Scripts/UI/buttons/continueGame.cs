@@ -21,6 +21,6 @@ public class continueGame : MonoBehaviour
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       Debug.Log("reopen " + levelManager.sceneBefore);
       Debug.Log("levelManager: " + levelManager.levelLoader);
-      levelManager.levelLoader.loadSceneByString(levelManager.sceneBefore);
+      levelManager.levelLoader.loadSceneByString(levelManager.sceneBefore, true);
     }
 }

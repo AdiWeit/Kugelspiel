@@ -24,7 +24,7 @@ public class loadLevel : MonoBehaviour
       // name/string possible
       Debug.Log("Try to open scene " + "level_" + levelNr);
       if (SceneUtility.GetBuildIndexByScenePath("level_" + levelNr) >= 0) {
-        StartCoroutine(manageModeSelection(false, levelNr, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
+        StartCoroutine(manageModeSelection(false, levelNr, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition, false));
         SceneManager.LoadScene("level_" + levelNr);
       }
       else {
@@ -34,24 +34,25 @@ public class loadLevel : MonoBehaviour
     }
     public void beginEndlessRun()
     {
-      StartCoroutine(manageModeSelection(true, 1, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
+      StartCoroutine(manageModeSelection(true, 1, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition, false));
       SceneManager.LoadScene("endlessRunner");
       levelManager.random = true;
     }
-    public void loadSceneByString(string pString)
+    public void loadSceneByString(string pString, bool pContinue)
     {
       SceneManager.LoadScene(pString);
-      StartCoroutine(manageModeSelection(levelManager.random, levelManager.currentLevel, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition));
+      StartCoroutine(manageModeSelection(levelManager.random, levelManager.currentLevel, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition, pContinue));
     }
-    IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition)
+    IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition, bool pContinue)
     {
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
-      planeMovement.startPosition = pStartPosition;
-      // set startPosition
-      levelManager.gameStarted = gameStarted;
+      if (!pContinue) {
+        planeMovement.startPosition = pStartPosition;
+        levelManager.gameStarted = gameStarted;
+      }
       levelManager.sphereCount = pSphereCount;
       if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
       if (Input.gyro.enabled && levelNr == 1) {
