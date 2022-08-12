@@ -33,7 +33,7 @@ public class liveManager : MonoBehaviour
       }
       if (livesText) livesText.text = lives + " lives";
       }
-      if (!levelManager.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel);
+      if (!levelManager.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel, true);
     }
     public void getLive()
     {

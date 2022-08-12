@@ -8,10 +8,13 @@ public class loadLevel : MonoBehaviour
     // Start is called before the first frame update
     private levelManager levelManager = new levelManager();
     private movePlane planeMovement = new movePlane();
+    public GameObject[] level;
+    private objectManager objectManager;
     void Start()
     {
       DontDestroyOnLoad(gameObject);
       if (GameObject.FindObjectsOfType<loadLevel>().Length > 1) Destroy(gameObject);
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
     }
 
     // Update is called once per frame
@@ -19,13 +22,13 @@ public class loadLevel : MonoBehaviour
     {
         
     }
-    public void LoadLevel(int levelNr)
+    public void LoadLevel(int levelNr, bool pContinue)
     {
-      // name/string possible
-      Debug.Log("Try to open scene " + "level_" + levelNr);
-      if (SceneUtility.GetBuildIndexByScenePath("level_" + levelNr) >= 0) {
-        StartCoroutine(manageModeSelection(false, levelNr, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition, false));
-        SceneManager.LoadScene("level_" + levelNr);
+      Debug.Log("Try to open " + "level_" + levelNr);
+      if (levelNr <= level.Length) {
+        StartCoroutine(manageModeSelection(false, levelNr, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition, pContinue));
+        SceneManager.LoadScene("level_scene");
+        // StartCoroutine(levelLoaded(levelNr));
       }
       else {
         // TODO: handle
@@ -43,17 +46,28 @@ public class loadLevel : MonoBehaviour
       SceneManager.LoadScene(pString);
       StartCoroutine(manageModeSelection(levelManager.random, levelManager.currentLevel, levelManager.gameStarted, levelManager.sphereCount, planeMovement.startPosition, pContinue));
     }
+    IEnumerator levelLoaded(int levelNr)
+    {
+      yield return new WaitForSeconds(0.1f);
+      Instantiate(level[levelNr - 1], new Vector3(446.5f, 302, 0), level[levelNr - 1].transform.rotation);
+    }
     IEnumerator manageModeSelection(bool random, int levelNr, bool gameStarted, int pSphereCount, Vector3 pStartPosition, bool pContinue)
     {
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
-      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
+      Instantiate(level[levelNr - 1], new Vector3(446.5f, 302, 0), level[levelNr - 1].transform.rotation);
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
+      objectManager = GameObject.Find("objectManager").GetComponent<objectManager>();
+      objectManager.movingCube = planeMovement;
+      Debug.Log("planeMovement: ");
+      Debug.Log(planeMovement);
       if (!pContinue) {
-        planeMovement.startPosition = pStartPosition;
-        levelManager.gameStarted = gameStarted;
+        Debug.Log("startPosition: " + pStartPosition.ToString());
+        planeMovement.startPosition = new Vector3(0, 0, 0); // pStartPosition;
+        // levelManager.gameStarted = gameStarted;
       }
-      levelManager.sphereCount = pSphereCount;
+      else planeMovement.startPosition = pStartPosition;
+      // levelManager.sphereCount = pSphereCount;
       if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
       if (Input.gyro.enabled && levelNr == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";

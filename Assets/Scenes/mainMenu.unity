@@ -513,6 +513,7 @@ MonoBehaviour:
   borderObj: {fileID: 0}
   gameStarted: 0
   random: 1
+  sceneBefore: 
 --- !u!1 &1084623076
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +770,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60e6e871bbd3fba49023ac27d685b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level:
+  - {fileID: 1472174937839137728, guid: 31d7517e929aa639eaf660113bc691de, type: 3}
+  - {fileID: 3103371196886136328, guid: f7a7f6d7ae6bb57d19b1e6aff9436ff0, type: 3}
+  - {fileID: 4984167939906899869, guid: 27ca06802f86528edbe88f224543bb90, type: 3}
+  - {fileID: 3596533568056253274, guid: da5db5813c9e72828a8a88864efcba13, type: 3}
+  - {fileID: 4434196258190843011, guid: 15831fb2238298a2eba31fa76219c9fd, type: 3}
+  - {fileID: 175008159293114391, guid: eb54a8b2c5eb908dc881d53d2835c135, type: 3}
+  - {fileID: 2172631530948674003, guid: 40c6d666bcd1b7c8fa7a67a2530adf64, type: 3}
+  - {fileID: 4608254621380878557, guid: 7e7c09661e2a3e353918ad7dcbbcb459, type: 3}
+  - {fileID: 659734767840926386, guid: 808bfbc9286d2b90a8070944cb8304a7, type: 3}
+  - {fileID: 8118774178866477941, guid: 6855132f5bd94d1c6a29cca92c015fc1, type: 3}
+  - {fileID: 1649851049540200275, guid: 7d439f0f7dffd68779a8eddd793a1324, type: 3}
+  - {fileID: 464970245989604028, guid: e3ed6dd98ca685a22b700c28c0146ec7, type: 3}
 --- !u!4 &1274348696
 Transform:
   m_ObjectHideFlags: 0
