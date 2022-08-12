@@ -42,6 +42,7 @@ public class movePlane : MonoBehaviour
         rotationPosition = Input.gyro.gravity*motionSpeed;
       }
       else {
+        if (GameObject.FindGameObjectsWithTag("joystickStick") == null) Instantiate(GameObject.Find("joystickStick"), new Vector3(-0.3891516f, -10.36f, 1302357f), GameObject.Find("joystickStick").transform.rotation);
         rotationPosition = Input.mousePosition - startPosition;
         if (startPosition != new Vector3(0, 0, 0)) 
         {
