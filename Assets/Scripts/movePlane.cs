@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.SceneManagement;
 
 public class movePlane : MonoBehaviour
@@ -10,32 +11,46 @@ public class movePlane : MonoBehaviour
     public levelManager levelManager;
     public gameInstructions instructionsText;
     public objectManager objManager;
+    public GameObject mouseBackCircle;
     private float motionSpeed = 80f;
     public float smoothness = 1.5f;
     public Vector3 startPosition; 
     public Vector3 rotationPosition;
+    private Vector3 mousePositionBefore;
+    public GameObject pauseMenu;
+    public bool waitForMousePosition = false;
     // Start is called before the first frame update
     void Start()
     {
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       instructionsText = GameObject.Find("gameInstructions").GetComponent<gameInstructions>();
       objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
+      pauseMenu = GameObject.Find("pauseMenuReference").GetComponent<pauseMenuReference>().pauseMenu;
       // instructionsText.levelDone(0);
       if (SystemInfo.supportsGyroscope) {
         Input.gyro.enabled = true;
         Destroy(GameObject.Find("joystickStick"));
       }
-      else Input.gyro.enabled = false;
-      if (!SceneManager.GetActiveScene().name.Contains("level")) objManager.spawnSphere(0, 0, "normal");
+      else {
+        Input.gyro.enabled = false;
+        GameObject.Find("motionControl").SetActive(false);
+      }
     }
 
     // Update is called once per frame
     void Update()
     {
-      if (Input.GetButtonDown("Fire1")) {
-        startPosition = Input.mousePosition;
-        Debug.Log("Set start position");
-        if (SystemInfo.deviceType == DeviceType.Handheld && !levelManager.gameStarted) beginGame();
+      if (Input.GetButtonDown("Fire1") && !pauseMenu.activeInHierarchy) {
+        if (waitForMousePosition) {
+          Time.timeScale = 1;
+          waitForMousePosition = false;
+          GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
+        }
+        else {
+          startPosition = Input.mousePosition;
+          Debug.Log("Set start position");
+          if (SystemInfo.deviceType == DeviceType.Handheld && !levelManager.gameStarted) beginGame();
+        }
       }
       if (Input.gyro.enabled) {
         // instructionsText.showText(Input.gyro.gravity.ToString());
@@ -47,12 +62,21 @@ public class movePlane : MonoBehaviour
         if (startPosition != new Vector3(0, 0, 0)) 
         {
           GameObject.Find("joystickStick").GetComponent<Transform>().localPosition = getMousePosition(startPosition);
-          LineRenderer lr = gameObject.GetComponent<LineRenderer>();
-          lr.SetPosition(0, /*new Vector3(startPosition.x, startPosition.y, 0.03f)*/getMousePosition(startPosition));
-          lr.SetPosition(1, /*new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0.03f)*/getMousePosition(Input.mousePosition));
+          if (levelManager.gameStarted)
+          {
+            LineRenderer lr = gameObject.GetComponent<LineRenderer>();
+            lr.SetPosition(0, getMousePosition(startPosition));
+            lr.SetPosition(1, getMousePosition(Input.mousePosition));
+            mousePositionBefore = Input.mousePosition;
+          }
         }
+          if (waitForMousePosition) {
+            mouseBackCircle = GameObject.Find("mouseBackCircle");
+            mouseBackCircle.transform.localPosition = getMousePosition(mousePositionBefore);
+          }
       }
-      if (!levelManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
+      Debug.Log(pauseMenu);
+      if (!pauseMenu.activeInHierarchy && !waitForMousePosition && !levelManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
         beginGame();
       }
       if (levelManager.gameStarted/* && SystemInfo.deviceType != DeviceType.Handheld*/) {

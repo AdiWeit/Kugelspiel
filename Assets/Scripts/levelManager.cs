@@ -27,13 +27,13 @@ public class levelManager : MonoBehaviour
     private Vector3 borderStartingPosition;
     // Start is called before the first frame update
     public bool gameStarted = false;
-    public bool random = true;
+    public bool random = false;
     public string sceneBefore;
     void Start()
     {
       levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
       if (GameObject.FindObjectsOfType<levelManager>().Length > 1) Destroy(gameObject);
-      DontDestroyOnLoad(gameObject);
+      // DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -88,6 +88,7 @@ public class levelManager : MonoBehaviour
       borderObj = GameObject.Find("border")?.GetComponent<borderObj>();
       inGoalCount = 0;
       if (random) {
+        Debug.Log("endless runner selected!");
       if (number == 0) {
         number = currentLevel;
         if (borderObj.transform.position.y > 0.38) borderObj.transform.localPosition = new Vector3(borderObj.transform.localPosition.x, borderObj.transform.localPosition.y - 0.001f, borderObj.transform.localPosition.z);

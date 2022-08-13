@@ -26,5 +26,6 @@ public class loadLevelSelection : MonoBehaviour
         levelManager.random = false;
       }
       else SceneManager.LoadScene("levelSelection");
+      Time.timeScale = 1f;
     }
 }

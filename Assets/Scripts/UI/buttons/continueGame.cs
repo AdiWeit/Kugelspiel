@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class continueGame : MonoBehaviour
 {
-    private levelManager levelManager;
+    private movePlane movePlane;
+    public GameObject pauseMenu;
     // Start is called before the first frame update
     void Start()
     {
-        
+      
     }
 
     // Update is called once per frame
@@ -18,9 +19,11 @@ public class continueGame : MonoBehaviour
     }
     public void continueGameF()
     {
-      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
-      Debug.Log("reopen " + levelManager.sceneBefore);
-      Debug.Log("levelManager: " + levelManager.levelLoader);
-      levelManager.levelLoader.loadSceneByString(levelManager.sceneBefore, true);
+      movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
+        pauseMenu.SetActive(false);
+        movePlane.waitForMousePosition = true;
+      if (Input.gyro.enabled) {
+        Time.timeScale = 1f;
+      }
     }
 }

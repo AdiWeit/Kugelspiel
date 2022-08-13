@@ -259,7 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &14616054
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +475,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &75545500
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,7 +931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &251870950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &484023795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &709651383
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +1951,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &1126902647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2087,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &1161709287
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,7 +2303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &1421311647
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,6 +2383,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421311647}
   m_CullTransparentMesh: 1
+--- !u!1 &1690208585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1690208587}
+  - component: {fileID: 1690208586}
+  m_Layer: 0
+  m_Name: levelLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1690208586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690208585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60e6e871bbd3fba49023ac27d685b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level:
+  - {fileID: 1472174937839137728, guid: 31d7517e929aa639eaf660113bc691de, type: 3}
+  - {fileID: 3103371196886136328, guid: f7a7f6d7ae6bb57d19b1e6aff9436ff0, type: 3}
+  - {fileID: 4984167939906899869, guid: 27ca06802f86528edbe88f224543bb90, type: 3}
+  - {fileID: 3596533568056253274, guid: da5db5813c9e72828a8a88864efcba13, type: 3}
+  - {fileID: 4434196258190843011, guid: 15831fb2238298a2eba31fa76219c9fd, type: 3}
+  - {fileID: 175008159293114391, guid: eb54a8b2c5eb908dc881d53d2835c135, type: 3}
+  - {fileID: 2172631530948674003, guid: 40c6d666bcd1b7c8fa7a67a2530adf64, type: 3}
+  - {fileID: 4608254621380878557, guid: 7e7c09661e2a3e353918ad7dcbbcb459, type: 3}
+  - {fileID: 659734767840926386, guid: 808bfbc9286d2b90a8070944cb8304a7, type: 3}
+  - {fileID: 8118774178866477941, guid: 6855132f5bd94d1c6a29cca92c015fc1, type: 3}
+  - {fileID: 1649851049540200275, guid: 7d439f0f7dffd68779a8eddd793a1324, type: 3}
+  - {fileID: 464970245989604028, guid: e3ed6dd98ca685a22b700c28c0146ec7, type: 3}
+--- !u!4 &1690208587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690208585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 457.62982, y: 300.51245, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1832999416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,7 +2750,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &1961768926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2838,7 +2886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &1969907144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,7 +3022,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &1978959628
 GameObject:
   m_ObjectHideFlags: 0
@@ -3192,7 +3238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &2054093588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,7 +3374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 0}
-  levelManager: {fileID: 0}
 --- !u!1 &2074838580
 GameObject:
   m_ObjectHideFlags: 0
