@@ -11,6 +11,7 @@ public class loadLevel : MonoBehaviour
     public GameObject[] level;
     public GameObject endlessRunnerPref;
     public objectManager objectManager;
+    public bool levelSelected = false;
     void Start()
     {
       DontDestroyOnLoad(gameObject);
@@ -60,13 +61,11 @@ public class loadLevel : MonoBehaviour
       if (Input.gyro.enabled && levelNr == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
+      if (random) objectManager.spawnSphere(0, 0, "normal");
       yield return new WaitForSeconds(1);
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       levelManager.random = random;
-      if (random) {
-        objectManager.spawnSphere(0, 0, "normal");
-      }
-      else {
+        if (!random) {
         levelManager.startLevel(levelNr);
         if (levelManager.gameStarted)
         {

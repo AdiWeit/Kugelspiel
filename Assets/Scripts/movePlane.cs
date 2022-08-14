@@ -13,6 +13,7 @@ public class movePlane : MonoBehaviour
     public gameInstructions instructionsText;
     public objectManager objManager;
     public GameObject mouseBackCircle;
+    public loadLevel levelLoader;
     private float motionSpeed = 80f;
     public float sensitivity = 1;
     public float sensitivityBefore = 1;
@@ -30,15 +31,20 @@ public class movePlane : MonoBehaviour
       objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
       pauseMenu = GameObject.Find("pauseMenuReference").GetComponent<pauseMenuReference>().pauseMenu;
       joystick = GameObject.Find("joystickReference").GetComponent<joystickReference>().joyStick;
+      levelLoader = GameObject.Find("levelLoader").GetComponent<loadLevel>();
       // instructionsText.levelDone(0);
-      if (SystemInfo.supportsGyroscope) {
-        Input.gyro.enabled = true;
-        joystick.SetActive(false);
-      }
-      else {
-        Input.gyro.enabled = false;
-        joystick.SetActive(true);
-        GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
+      if (!levelLoader.levelSelected) {
+        Debug.Log("preset settings");
+        if (SystemInfo.supportsGyroscope) {
+          Input.gyro.enabled = true;
+          joystick.SetActive(false);
+        }
+        else {
+          Input.gyro.enabled = false;
+          joystick.SetActive(true);
+          GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
+        }
+        levelLoader.levelSelected = true;
       }
     }
 
