@@ -15,6 +15,7 @@ public class objectManager : MonoBehaviour
     public GameObject sphereReference;
     public movePlane movingCube;
     public liveManager liveManager;
+    public levelManager levelManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +40,7 @@ public class objectManager : MonoBehaviour
         if (type[i] == "muchBounce") position.y = 3.5f + movingCube.transform.rotation.y;
         // if (type[i].Contains("Bounce")) Debug.Break();
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
+        newSphere.transform.SetParent(GameObject.Find("spawningSpheres").transform);
         // newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
         // newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
         transformMarbleToType(newSphere, true, type[i]);
