@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class movePlane : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class movePlane : MonoBehaviour
     public objectManager objManager;
     public GameObject mouseBackCircle;
     private float motionSpeed = 80f;
-    public float smoothness = 1.5f;
+    public float sensitivity = 1;
+    public float sensitivityBefore = 1;
     public Vector3 startPosition; 
     public Vector3 rotationPosition;
     private Vector3 mousePositionBefore;
@@ -60,7 +62,7 @@ public class movePlane : MonoBehaviour
         rotationPosition = Input.gyro.gravity*motionSpeed;
       }
       else {
-        rotationPosition = Input.mousePosition - startPosition;
+        rotationPosition = (Input.mousePosition - startPosition)*sensitivity;
         if (startPosition != new Vector3(0, 0, 0)) 
         {
           joystick.GetComponent<Transform>().localPosition = getMousePosition(startPosition);
@@ -74,7 +76,7 @@ public class movePlane : MonoBehaviour
         }
           if (waitForMousePosition) {
             mouseBackCircle = GameObject.Find("mouseBackCircle");
-            mouseBackCircle.transform.localPosition = getMousePosition(mousePositionBefore);
+            mouseBackCircle.transform.localPosition = getMousePosition(startPosition + ((mousePositionBefore - startPosition)*sensitivityBefore)/sensitivity);
           }
       }
       if (!pauseMenu.activeInHierarchy && !waitForMousePosition && !levelManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
@@ -90,9 +92,12 @@ public class movePlane : MonoBehaviour
     }
     public Vector3 getMousePosition(Vector3 position)
     {
-      position.z = 10;//+= Camera.main.nearClipPlane;
+      position.z = 5;//+= Camera.main.nearClipPlane;
       Vector3 mousePosition = Camera.main.ScreenToWorldPoint(position);
       return mousePosition;
+    }
+    public void sensitivityChanged(toggleSensibility slider) {
+      sensitivity = slider.gameObject.GetComponent<Slider>().value;
     }
     private void beginGame()
     {

@@ -11,6 +11,7 @@ public class pause : MonoBehaviour
     private levelManager levelManager;
     public GameObject pauseMenu;
     public continueGame continueGame; 
+    private movePlane movePlane;
     void Start()
     {
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
@@ -20,7 +21,9 @@ public class pause : MonoBehaviour
     void Update()
     {
       if (Input.GetKeyDown("p")) {
-        if (levelManager.gameStarted || GameObject.Find("movingCube").GetComponent<movePlane>().waitForMousePosition) pauseGame();
+        movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
+        movePlane.sensitivityBefore = movePlane.sensitivity;
+        if (levelManager.gameStarted || movePlane.waitForMousePosition) pauseGame();
         else continueGame.continueGameF();
       }
     }
