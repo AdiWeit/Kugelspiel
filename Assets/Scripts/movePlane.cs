@@ -33,7 +33,7 @@ public class movePlane : MonoBehaviour
       }
       else {
         Input.gyro.enabled = false;
-        GameObject.Find("motionControl").SetActive(false);
+        GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
       }
     }
 
@@ -75,7 +75,6 @@ public class movePlane : MonoBehaviour
             mouseBackCircle.transform.localPosition = getMousePosition(mousePositionBefore);
           }
       }
-      Debug.Log(pauseMenu);
       if (!pauseMenu.activeInHierarchy && !waitForMousePosition && !levelManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
         beginGame();
       }

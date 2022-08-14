@@ -20,8 +20,8 @@ public class continueGame : MonoBehaviour
     public void continueGameF()
     {
       movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
-        pauseMenu.SetActive(false);
-        movePlane.waitForMousePosition = true;
+      pauseMenu.SetActive(false);
+      movePlane.waitForMousePosition = true;
       if (Input.gyro.enabled) {
         Time.timeScale = 1f;
       }
