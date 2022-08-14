@@ -22,5 +22,6 @@ public class toggleMotionControl : MonoBehaviour
     public void toggleMotionControlF()
     {
       Input.gyro.enabled = GetComponent<Toggle>().isOn;
+      GameObject.Find("joystickReference").GetComponent<joystickReference>().joyStick.SetActive(Input.gyro.enabled);
     }
 }

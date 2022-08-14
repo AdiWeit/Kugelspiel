@@ -18,6 +18,7 @@ public class movePlane : MonoBehaviour
     public Vector3 rotationPosition;
     private Vector3 mousePositionBefore;
     public GameObject pauseMenu;
+    public GameObject joystick;
     public bool waitForMousePosition = false;
     // Start is called before the first frame update
     void Start()
@@ -26,13 +27,15 @@ public class movePlane : MonoBehaviour
       instructionsText = GameObject.Find("gameInstructions").GetComponent<gameInstructions>();
       objManager = GameObject.Find("objectManager").GetComponent<objectManager>();
       pauseMenu = GameObject.Find("pauseMenuReference").GetComponent<pauseMenuReference>().pauseMenu;
+      joystick = GameObject.Find("joystickReference").GetComponent<joystickReference>().joyStick;
       // instructionsText.levelDone(0);
       if (SystemInfo.supportsGyroscope) {
         Input.gyro.enabled = true;
-        Destroy(GameObject.Find("joystickStick"));
+        joystick.SetActive(false);
       }
       else {
         Input.gyro.enabled = false;
+        joystick.SetActive(true);
         GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
       }
     }
@@ -57,11 +60,10 @@ public class movePlane : MonoBehaviour
         rotationPosition = Input.gyro.gravity*motionSpeed;
       }
       else {
-        if (GameObject.FindGameObjectsWithTag("joystickStick") == null) Instantiate(GameObject.Find("joystickStick"), new Vector3(-0.3891516f, -10.36f, 1302357f), GameObject.Find("joystickStick").transform.rotation);
         rotationPosition = Input.mousePosition - startPosition;
         if (startPosition != new Vector3(0, 0, 0)) 
         {
-          GameObject.Find("joystickStick").GetComponent<Transform>().localPosition = getMousePosition(startPosition);
+          joystick.GetComponent<Transform>().localPosition = getMousePosition(startPosition);
           if (levelManager.gameStarted)
           {
             LineRenderer lr = gameObject.GetComponent<LineRenderer>();
