@@ -15,9 +15,9 @@ public class settingsManager : MonoBehaviour
   }
   public void getSettings() {
     movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
-    Debug.Log(PlayerPrefs.GetString("useGyro"));
     if (PlayerPrefs.HasKey("sensitivity")) movePlane.sensitivity = PlayerPrefs.GetFloat("sensitivity");
     if (PlayerPrefs.HasKey("useGyro")) Input.gyro.enabled = PlayerPrefs.GetInt("useGyro") == 1 ? true : false;
+    else Input.gyro.enabled = true;
     // change settings canvas
     gyroCheck.GetComponent<Toggle>().isOn = Input.gyro.enabled;
     if (!SystemInfo.supportsGyroscope) GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
