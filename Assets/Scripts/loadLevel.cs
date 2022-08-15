@@ -11,6 +11,7 @@ public class loadLevel : MonoBehaviour
     public GameObject[] level;
     public GameObject endlessRunnerPref;
     public objectManager objectManager;
+    public settingsManager settingsManager;
     public bool levelSelected = false;
     void Start()
     {
@@ -62,6 +63,8 @@ public class loadLevel : MonoBehaviour
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
       if (random) objectManager.spawnSphere(0, 0, "normal");
+      settingsManager = GameObject.Find("settingsManager").GetComponent<settingsManager>();
+      settingsManager.getSettings();
       yield return new WaitForSeconds(1);
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       levelManager.random = random;

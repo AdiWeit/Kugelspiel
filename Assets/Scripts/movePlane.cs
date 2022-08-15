@@ -104,13 +104,15 @@ public class movePlane : MonoBehaviour
     }
     public void sensitivityChanged(toggleSensibility slider) {
       sensitivity = slider.gameObject.GetComponent<Slider>().value;
+      PlayerPrefs.SetFloat("sensitivity", sensitivity);
+      PlayerPrefs.Save();
     }
     private void beginGame()
     {
-        foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
-        {
-          marble.GetComponent<Rigidbody>().useGravity = true;
-        }
+      foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
+      {
+        marble.GetComponent<Rigidbody>().useGravity = true;
+      }
       levelManager.gameStarted = true;
       instructionsText.levelDone(0);
     }
