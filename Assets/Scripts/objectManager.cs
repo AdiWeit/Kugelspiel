@@ -40,6 +40,7 @@ public class objectManager : MonoBehaviour
         if (type[i] == "muchBounce") position.y = 3.5f + movingCube.transform.rotation.y;
         // if (type[i].Contains("Bounce")) Debug.Break();
         GameObject newSphere = Instantiate(sphereReference, position, rotation);
+        // if (type[i].Contains("Bounce")) newSphere.GetComponent<Rigidbody>().drag = 0;
         newSphere.transform.SetParent(GameObject.Find("spawningSpheres").transform);
         // newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
         // newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;

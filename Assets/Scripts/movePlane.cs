@@ -22,6 +22,7 @@ public class movePlane : MonoBehaviour
     private Vector3 mousePositionBefore;
     public GameObject pauseMenu;
     public GameObject joystick;
+    public GameObject referencePlane;
     public bool waitForMousePosition = false;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,7 @@ public class movePlane : MonoBehaviour
           Time.timeScale = 1;
           waitForMousePosition = false;
           GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
+          if (referencePlane != null) Destroy(referencePlane);
         }
         else {
           startPosition = Input.mousePosition;
@@ -93,7 +95,24 @@ public class movePlane : MonoBehaviour
         rotationPosition.y,
         0,
         -rotationPosition.x
-);
+      );
+      }
+      if (referencePlane != null) {
+        referencePlane.transform.eulerAngles = new Vector3(
+        rotationPosition.y,
+        0,
+        -rotationPosition.x
+       );
+       float xDiv = Math.Abs(rotationPosition.y - gameObject.transform.eulerAngles.x);
+       float yDiv = Math.Abs(-rotationPosition.x - gameObject.transform.eulerAngles.z);
+       if (xDiv > 360) xDiv -= 360;
+       if (yDiv > 360) yDiv -= 360;
+       if (xDiv + yDiv < 7f) {
+        Time.timeScale = 1;
+        waitForMousePosition = false;
+        GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
+        if (referencePlane != null) Destroy(referencePlane);
+       }
       }
     }
     public Vector3 getMousePosition(Vector3 position)

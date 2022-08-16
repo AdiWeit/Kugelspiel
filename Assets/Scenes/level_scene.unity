@@ -755,6 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2027487168}
+  transparentRed: {fileID: 0}
 --- !u!114 &620175863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,6 +2276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2027487168}
+  transparentRed: {fileID: 2100000, guid: 2e9256d17433706609df74804d8f8570, type: 2}
 --- !u!114 &1396822230
 MonoBehaviour:
   m_ObjectHideFlags: 0
