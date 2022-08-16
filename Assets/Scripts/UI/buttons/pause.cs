@@ -12,6 +12,7 @@ public class pause : MonoBehaviour
     public GameObject pauseMenu;
     public continueGame continueGame; 
     private movePlane movePlane;
+    public GameObject sensitivityWarning;
     void Start()
     {
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
@@ -35,8 +36,9 @@ public class pause : MonoBehaviour
         continueGame.continueGameF();
       } 
       else {
-      pauseMenu.SetActive(true);
-      Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        sensitivityWarning.SetActive(Input.gyro.enabled);
       }
     }
 }

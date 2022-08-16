@@ -14,7 +14,6 @@ public class movePlane : MonoBehaviour
     public objectManager objManager;
     public GameObject mouseBackCircle;
     public loadLevel levelLoader;
-    private float motionSpeed = 80f;
     public float sensitivity = 1;
     public float sensitivityBefore = 1;
     public Vector3 startPosition; 
@@ -67,7 +66,7 @@ public class movePlane : MonoBehaviour
       }
       if (Input.gyro.enabled) {
         // instructionsText.showText(Input.gyro.gravity.ToString());
-        rotationPosition = Input.gyro.gravity*motionSpeed;
+        rotationPosition = Input.gyro.gravity*(sensitivity*90);
       }
       else {
         rotationPosition = (Input.mousePosition - startPosition)*sensitivity;
@@ -123,7 +122,8 @@ public class movePlane : MonoBehaviour
     }
     public void sensitivityChanged(toggleSensibility slider) {
       sensitivity = slider.gameObject.GetComponent<Slider>().value;
-      PlayerPrefs.SetFloat("sensitivity", sensitivity);
+      if (Input.gyro.enabled) PlayerPrefs.SetFloat("gyroSensitivity", sensitivity);
+      else PlayerPrefs.SetFloat("joystickSensitivity", sensitivity);
       PlayerPrefs.Save();
     }
     private void beginGame()
