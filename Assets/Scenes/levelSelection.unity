@@ -1648,9 +1648,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 936, y: 603}
+  m_ReferenceResolution: {x: 931, y: 603}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.556
+  m_MatchWidthOrHeight: 0.752
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2425,6 +2425,11 @@ MonoBehaviour:
   - {fileID: 8118774178866477941, guid: 6855132f5bd94d1c6a29cca92c015fc1, type: 3}
   - {fileID: 1649851049540200275, guid: 7d439f0f7dffd68779a8eddd793a1324, type: 3}
   - {fileID: 464970245989604028, guid: e3ed6dd98ca685a22b700c28c0146ec7, type: 3}
+  endlessRunnerPref: {fileID: 0}
+  objectManager: {fileID: 0}
+  settingsManager: {fileID: 0}
+  triesManager: {fileID: 0}
+  levelSelected: 0
 --- !u!4 &1690208587
 Transform:
   m_ObjectHideFlags: 0
