@@ -65,7 +65,7 @@ public class levelManager : MonoBehaviour
            startLevel(currentLevel);
           } 
           else {
-            levelLoader.LoadLevel(currentLevel, true);
+            levelLoader.LoadLevel(currentLevel, true, false);
           }
         }
       }

@@ -20,6 +20,6 @@ public class openLevel : MonoBehaviour
     }
     void clicked()
     {
-      levelLoader.LoadLevel(int.Parse(gameObject.name.Split(' ')[1]), false);
+      levelLoader.LoadLevel(int.Parse(gameObject.name.Split(' ')[1]), false, false);
     }
 }

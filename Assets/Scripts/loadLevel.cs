@@ -12,6 +12,7 @@ public class loadLevel : MonoBehaviour
     public GameObject endlessRunnerPref;
     public objectManager objectManager;
     public settingsManager settingsManager;
+    public GameObject triesManager;
     public bool levelSelected = false;
     void Start()
     {
@@ -24,11 +25,11 @@ public class loadLevel : MonoBehaviour
     {
         
     }
-    public void LoadLevel(int levelNr, bool pContinue)
+    public void LoadLevel(int levelNr, bool pContinue, bool restartLevel)
     {
       Debug.Log("Try to open " + "level_" + levelNr);
       if (levelNr <= level.Length) {
-        StartCoroutine(manageModeSelection(false, levelNr, planeMovement.startPosition, pContinue));
+        StartCoroutine(manageModeSelection(false, restartLevel, levelNr, planeMovement.startPosition, pContinue));
         // StartCoroutine(levelLoaded(levelNr));
       }
       else {
@@ -38,12 +39,16 @@ public class loadLevel : MonoBehaviour
     }
     public void beginEndlessRun()
     {
-      StartCoroutine(manageModeSelection(true, 1, planeMovement.startPosition, false));
+      StartCoroutine(manageModeSelection(true, false, 1, planeMovement.startPosition, false));
       Debug.Log("begin endless run");
     }
-    public IEnumerator manageModeSelection(bool random, int levelNr, /*bool gameStarted, int pSphereCount, */Vector3 pStartPosition, bool pContinue)
+    public IEnumerator manageModeSelection(bool random, bool restartLevel, int levelNr, /*bool gameStarted, int pSphereCount, */Vector3 pStartPosition, bool pContinue)
     {
-      SceneManager.LoadScene("level_scene");
+      if (!restartLevel) SceneManager.LoadScene("level_scene");
+      else {
+        if (random) Destroy(GameObject.Find("endlessRunner(Clone)"));
+        else Destroy(GameObject.Find("level_" + levelNr + "(Clone)"));
+      }
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
       if (random) Instantiate(endlessRunnerPref, new Vector3(446.5f, 302, 0), endlessRunnerPref.transform.rotation);
@@ -62,7 +67,17 @@ public class loadLevel : MonoBehaviour
       if (Input.gyro.enabled && levelNr == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
-      if (random) objectManager.spawnSphere(0, 0, "normal");
+      if (random) {
+        objectManager.spawnSphere(0, 0, "normal");
+        GameObject.Find("livesTextReference").GetComponent<livesTextReference>().livesText.SetActive(true);
+      }
+      else {
+        GameObject.Find("triesTextReference").GetComponent<triesTextReference>().triesText.SetActive(true);
+        if (!restartLevel) {
+          triesManager = GameObject.Find("triesManager");
+          triesManager.GetComponent<triesManager>().resetTries();
+        }
+      }
       settingsManager = GameObject.Find("settingsManager").GetComponent<settingsManager>();
       settingsManager.getSettings();
       yield return new WaitForSeconds(1);

@@ -9,6 +9,7 @@ public class liveManager : MonoBehaviour
     public levelManager levelManager;
     public Text livesText;
     private loadLevel levelLoader;
+    public GameObject triesManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class liveManager : MonoBehaviour
     public void takeDamage(bool byStuckOne)
     {
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
+      if (!levelManager.random) triesManager.GetComponent<triesManager>().increaceTries();
       if ((!levelManager.waitBlockedDisapears || byStuckOne) && levelManager.random) {
       lives--;
       if (lives > 0) levelManager.startLevel(0);
@@ -33,7 +35,7 @@ public class liveManager : MonoBehaviour
       }
       if (livesText) livesText.text = lives + " lives";
       }
-      if (!levelManager.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel, true);
+      if (!levelManager.random) levelManager.levelLoader.LoadLevel(levelManager.currentLevel, true, true);
     }
     public void getLive()
     {
