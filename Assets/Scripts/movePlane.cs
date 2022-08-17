@@ -51,6 +51,7 @@ public class movePlane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if (SceneManager.GetActiveScene().name == "levelSelection") return;
       if (Input.GetButtonDown("Fire1") && !pauseMenu.activeInHierarchy) {
         if (waitForMousePosition) {
           Time.timeScale = 1;
