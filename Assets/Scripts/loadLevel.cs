@@ -44,10 +44,13 @@ public class loadLevel : MonoBehaviour
     }
     public IEnumerator manageModeSelection(bool random, bool restartLevel, int levelNr, /*bool gameStarted, int pSphereCount, */Vector3 pStartPosition, bool pContinue)
     {
-      if (!restartLevel) SceneManager.LoadScene("level_scene");
+      if (!restartLevel && !pContinue) SceneManager.LoadScene("level_scene");
       else {
         if (random) Destroy(GameObject.Find("endlessRunner(Clone)"));
-        else Destroy(GameObject.Find("level_" + levelNr + "(Clone)"));
+        else {
+          if (pContinue) Destroy(GameObject.Find("level_" + (levelNr - 1) + "(Clone)"));
+          Destroy(GameObject.Find("level_" + levelNr + "(Clone)"));
+        }
       }
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
@@ -56,8 +59,6 @@ public class loadLevel : MonoBehaviour
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
       objectManager = GameObject.Find("objectManager").GetComponent<objectManager>();
       objectManager.movingCube = planeMovement;
-      Debug.Log("planeMovement: ");
-      Debug.Log(planeMovement);
       if (!pContinue) {
         Debug.Log("startPosition: " + pStartPosition.ToString());
         planeMovement.startPosition = new Vector3(0, 0, 0); // pStartPosition;
