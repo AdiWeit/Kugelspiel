@@ -33,8 +33,8 @@ public class loadLevel : MonoBehaviour
         // StartCoroutine(levelLoaded(levelNr));
       }
       else {
-        // TODO: handle
         Debug.Log("Level should be last one!");
+        SceneManager.LoadScene("levelSelection");
       }
     }
     public void beginEndlessRun()
