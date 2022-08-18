@@ -37,8 +37,8 @@ public class pause : MonoBehaviour
       } 
       else {
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
         sensitivityWarning.SetActive(Input.gyro.enabled);
+        Time.timeScale = 0f;
       }
     }
 }

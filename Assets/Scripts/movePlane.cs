@@ -18,7 +18,6 @@ public class movePlane : MonoBehaviour
     public float sensitivityBefore = 1;
     public Vector3 startPosition; 
     public Vector3 rotationPosition;
-    private Vector3 mousePositionBefore;
     public GameObject pauseMenu;
     public GameObject joystick;
     public GameObject referencePlane;
@@ -33,26 +32,14 @@ public class movePlane : MonoBehaviour
       joystick = GameObject.Find("joystickReference").GetComponent<joystickReference>().joyStick;
       levelLoader = GameObject.Find("levelLoader").GetComponent<loadLevel>();
       // instructionsText.levelDone(0);
-      if (!levelLoader.levelSelected) {
-        Debug.Log("preset settings");
-        if (SystemInfo.supportsGyroscope) {
-          Input.gyro.enabled = true;
-          joystick.SetActive(false);
-        }
-        else {
-          Input.gyro.enabled = false;
-          joystick.SetActive(true);
-          GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
-        }
-        levelLoader.levelSelected = true;
-      }
     }
 
     // Update is called once per frame
     void Update()
     {
       if (SceneManager.GetActiveScene().name == "levelSelection") return;
-      if (Input.GetButtonDown("Fire1") && !pauseMenu.activeInHierarchy) {
+      GameObject pauseB = GameObject.Find("pause_B");
+      if (Input.GetButtonDown("Fire1") && !pauseMenu.activeInHierarchy && Input.mousePosition.x < pauseB.transform.position.x - pauseB.GetComponent<RectTransform>().rect.width/2 && Input.mousePosition.y < pauseB.transform.position.y - pauseB.GetComponent<RectTransform>().rect.height/2) {
         if (waitForMousePosition) {
           Time.timeScale = 1;
           waitForMousePosition = false;
@@ -60,17 +47,17 @@ public class movePlane : MonoBehaviour
           if (referencePlane != null) Destroy(referencePlane);
         }
         else {
-          startPosition = Input.mousePosition;
+          if (!Input.gyro.enabled) startPosition = Input.mousePosition;
           Debug.Log("Set start position");
           if (SystemInfo.deviceType == DeviceType.Handheld && !levelManager.gameStarted) beginGame();
         }
       }
-      if (Input.gyro.enabled) {
+      if (Input.gyro.enabled && !pauseMenu.activeInHierarchy) {
         // instructionsText.showText(Input.gyro.gravity.ToString());
         rotationPosition = Input.gyro.gravity*(sensitivity*90);
       }
-      else {
-        rotationPosition = (Input.mousePosition - startPosition)*sensitivity;
+      else if (Input.mousePosition.x < pauseB.transform.position.x - pauseB.GetComponent<RectTransform>().rect.width/2 || Input.mousePosition.y < pauseB.transform.position.y - pauseB.GetComponent<RectTransform>().rect.height/2) {
+        if (!pauseMenu.activeInHierarchy && !waitForMousePosition) rotationPosition = (Input.mousePosition - startPosition)*sensitivity;
         if (startPosition != new Vector3(0, 0, 0)) 
         {
           joystick.GetComponent<Transform>().localPosition = getMousePosition(startPosition);
@@ -79,13 +66,8 @@ public class movePlane : MonoBehaviour
             LineRenderer lr = gameObject.GetComponent<LineRenderer>();
             lr.SetPosition(0, getMousePosition(startPosition));
             lr.SetPosition(1, getMousePosition(Input.mousePosition));
-            mousePositionBefore = Input.mousePosition;
           }
         }
-          if (waitForMousePosition) {
-            mouseBackCircle = GameObject.Find("mouseBackCircle");
-            mouseBackCircle.transform.localPosition = getMousePosition(startPosition + ((mousePositionBefore - startPosition)*sensitivityBefore)/sensitivity);
-          }
       }
       if (!pauseMenu.activeInHierarchy && !waitForMousePosition && !levelManager.gameStarted && !(startPosition.x == 0 && startPosition.y == 0) && (rotationPosition.x != 0 || rotationPosition.z != 0)) {
         beginGame();
@@ -110,7 +92,6 @@ public class movePlane : MonoBehaviour
        if (xDiv + yDiv < 7f) {
         Time.timeScale = 1;
         waitForMousePosition = false;
-        GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
         if (referencePlane != null) Destroy(referencePlane);
        }
       }

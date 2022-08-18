@@ -20,8 +20,13 @@ public class settingsManager : MonoBehaviour
     if (PlayerPrefs.HasKey("useGyro")) Input.gyro.enabled = PlayerPrefs.GetInt("useGyro") == 1 ? true : false;
     else Input.gyro.enabled = true;
     // change settings canvas
-    gyroCheck.GetComponent<Toggle>().isOn = Input.gyro.enabled;
-    if (!SystemInfo.supportsGyroscope) GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef.SetActive(false);
+    GameObject motionControl = GameObject.Find("motionControlCheckReference").GetComponent<motionControlCheckReference>().motionControlRef;
+    if (!SystemInfo.supportsGyroscope) {
+      motionControl.SetActive(false);
+      Input.gyro.enabled = false;
+    }
+    motionControl.GetComponent<Toggle>().isOn = Input.gyro.enabled;
+    motionControl.GetComponent<toggleMotionControl>().toggleMotionControlF();
     sensitivitySlider.GetComponent<Slider>().value = movePlane.sensitivity;
   }
 }

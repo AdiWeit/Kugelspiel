@@ -33,5 +33,11 @@ public class continueGame : MonoBehaviour
         }
         movePlane.referencePlane = referencePlane;
       }
+      else {
+        if (SystemInfo.supportsGyroscope && movePlane.startPosition == new Vector3(0, 0, 0)) {
+          movePlane.startPosition = new Vector3(Screen.width/2, Screen.height/2, 0); // new Vector3(427, 307, 0);
+        }
+        GameObject.Find("mouseBackCircle").transform.localPosition = movePlane.getMousePosition(movePlane.startPosition + movePlane.rotationPosition/movePlane.sensitivity);//;
+      }
     }
 }

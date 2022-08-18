@@ -28,7 +28,13 @@ public class toggleMotionControl : MonoBehaviour
       GameObject.Find("joystickReference").GetComponent<joystickReference>().joyStick.SetActive(!Input.gyro.enabled);
       PlayerPrefs.SetInt("useGyro", Input.gyro.enabled ? 1 : 0);
       PlayerPrefs.Save();
-      if (Input.gyro.enabled) sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("gyroSensitivity");
-      else sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("joystickSensitivity");
+      if (Input.gyro.enabled) {
+        sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("gyroSensitivity");
+        GameObject.Find("movingCube").GetComponent<LineRenderer>().enabled = false;
+      }
+      else {
+        sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("joystickSensitivity");
+        GameObject.Find("movingCube").GetComponent<LineRenderer>().enabled = true;
+      }
     }
 }

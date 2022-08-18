@@ -8,15 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/mainMenu.unity
     guid: 4dbbf4e46fbdb7d5da60b02c38b2592b
-  - enabled: 0
-    path: Assets/Scenes/endlessRunner.unity
-    guid: a1956dc79b0145f33999edd9b9b16e5e
   - enabled: 1
     path: Assets/Scenes/levelSelection.unity
     guid: b77a9d4ebab57be6f9a809984c601e05
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
