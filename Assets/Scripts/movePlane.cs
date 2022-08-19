@@ -21,6 +21,7 @@ public class movePlane : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject joystick;
     public GameObject referencePlane;
+    public GameObject borderReference;
     public bool waitForMousePosition = false;
     // Start is called before the first frame update
     void Start()
@@ -44,7 +45,7 @@ public class movePlane : MonoBehaviour
           Time.timeScale = 1;
           waitForMousePosition = false;
           GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
-          if (referencePlane != null) Destroy(referencePlane);
+          if (referencePlane != null && referencePlane.transform.position.x != -500) referencePlane.transform.position = new Vector3(-500, referencePlane.transform.position.y, referencePlane.transform.position.z); // Destroy(referencePlane);
         }
         else {
           if (!Input.gyro.enabled) startPosition = Input.mousePosition;
@@ -79,7 +80,7 @@ public class movePlane : MonoBehaviour
         -rotationPosition.x
       );
       }
-      if (referencePlane != null) {
+      if (referencePlane != null && referencePlane.transform.position.x != -500) {
         referencePlane.transform.eulerAngles = new Vector3(
         rotationPosition.y,
         0,
@@ -92,7 +93,13 @@ public class movePlane : MonoBehaviour
        if (xDiv + yDiv < 7f) {
         Time.timeScale = 1;
         waitForMousePosition = false;
-        if (referencePlane != null) Destroy(referencePlane);
+        if (referencePlane != null && referencePlane.transform.position.x != -500) {
+          // Destroy(referencePlane);
+          referencePlane.transform.position = new Vector3(-500, referencePlane.transform.position.y, referencePlane.transform.position.z);
+          if (!levelManager.gameStarted) {
+            beginGame();
+          }
+        }
        }
       }
     }

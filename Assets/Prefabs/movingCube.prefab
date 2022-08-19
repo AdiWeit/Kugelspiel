@@ -3058,6 +3058,17 @@ MonoBehaviour:
   levelManager: {fileID: 2098940310010489464}
   instructionsText: {fileID: 0}
   objManager: {fileID: 0}
+  mouseBackCircle: {fileID: 0}
+  levelLoader: {fileID: 0}
+  sensitivity: 1
+  sensitivityBefore: 1
+  startPosition: {x: 0, y: 0, z: 0}
+  rotationPosition: {x: 0, y: 0, z: 0}
+  pauseMenu: {fileID: 0}
+  joystick: {fileID: 0}
+  referencePlane: {fileID: 0}
+  borderReference: {fileID: 796244962285341419}
+  waitForMousePosition: 0
 --- !u!64 &2098940309700340071
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6208,14 +6219,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphereCount: 1
   inGoalCount: 0
+  currentLevel: 0
   waitBlockedDisapears: 0
   scoreObj: {fileID: 0}
   instructionsText: {fileID: 0}
   objManager: {fileID: 0}
   liveManager: {fileID: 0}
+  levelLoader: {fileID: 0}
   levelNrText: {fileID: 0}
   borderObj: {fileID: 2098940309118271497}
   gameStarted: 0
+  random: 0
+  sceneBefore: 
 --- !u!1 &2098940310173712568
 GameObject:
   m_ObjectHideFlags: 0

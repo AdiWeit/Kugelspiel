@@ -56,6 +56,12 @@ public class loadLevel : MonoBehaviour
       yield return new WaitForSeconds(0.01f);
       if (random) Instantiate(endlessRunnerPref, new Vector3(446.5f, 302, 0), endlessRunnerPref.transform.rotation);
       else Instantiate(level[levelNr - 1], new Vector3(446.5f, 302, 0), level[levelNr - 1].transform.rotation);
+      yield return new WaitForSeconds(0.01f);
+      if (pContinue && Input.gyro.enabled && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
+        levelManager.gameStarted = false;
+        GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
+        GameObject.Find("movingCube").transform.eulerAngles = new Vector3(0, 0, 0);
+      }
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
       objectManager = GameObject.Find("objectManager").GetComponent<objectManager>();
       objectManager.movingCube = planeMovement;

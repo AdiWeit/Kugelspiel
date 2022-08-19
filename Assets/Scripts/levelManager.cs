@@ -7,6 +7,7 @@ using System;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class levelManager : MonoBehaviour
 {
@@ -62,7 +63,13 @@ public class levelManager : MonoBehaviour
            liveManager.getLive();
            Debug.Log((currentLevel + 1) + ". Level reached!");
            instructionsText.levelDone(currentLevel);
-           startLevel(currentLevel);
+           if (GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
+            gameStarted = false;
+            GameObject.Find("movingCube").GetComponent<movePlane>().waitForMousePosition = true;
+            GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
+            GameObject.Find("movingCube").transform.eulerAngles = new Vector3(0, 0, 0);
+           }
+           /*else */startLevel(currentLevel);
           } 
           else {
             levelLoader.LoadLevel(currentLevel, true, false);
@@ -143,9 +150,11 @@ public class levelManager : MonoBehaviour
           if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
         }
         objManager.spawnSphere(0, 0, marbleDistribution);
-        foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
-        {
-          StartCoroutine(marble.GetComponent<marbleParams>().setGravity(true));
+        if (!Input.gyro.enabled || !GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
+          foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
+          {
+            StartCoroutine(marble.GetComponent<marbleParams>().setGravity(true));
+          }
         }
       }
       else {
