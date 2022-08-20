@@ -51,7 +51,7 @@ public class movePlane : MonoBehaviour
         else {
           if (!Input.gyro.enabled) startPosition = Input.mousePosition;
           Debug.Log("Set start position");
-          if ((SystemInfo.deviceType == DeviceType.Handheld) && !levelManager.gameStarted) beginGame();
+          if ((SystemInfo.deviceType == DeviceType.Handheld && Input.gyro.enabled) && !levelManager.gameStarted) beginGame();
         }
       }
       if (Input.gyro.enabled && !pauseMenu.activeInHierarchy) {
@@ -124,6 +124,7 @@ public class movePlane : MonoBehaviour
         marble.GetComponent<Rigidbody>().useGravity = true;
       }
       levelManager.gameStarted = true;
-      instructionsText.levelDone(0);
+      // instructionsText.levelDone(0);
+      instructionsText.levelDone(levelManager.currentLevel, levelManager.random);
     }
 }

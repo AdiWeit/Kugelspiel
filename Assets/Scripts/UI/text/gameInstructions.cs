@@ -17,18 +17,20 @@ public class gameInstructions : MonoBehaviour
     {
       
     }
-    public void levelDone(int pLevel) {
+    public void levelDone(int pLevel, bool random) {
+      if (random) pLevel++;
       instructions.text = "";
       if (SystemInfo.deviceType == DeviceType.Handheld) {
         if (Input.gyro.enabled) {
-          if (pLevel == 0) instructions.text = "Tilt your device like it is the box on the display and navigate the ball into the hole!";
+          if (pLevel == 1) instructions.text = "Tilt your device like it is the box on the display and navigate the ball into the hole!";
         }
+        else instructions.text = "Hold your finger on the screen and move it in the direction you want the box to be to navigate the ball into the hole! ";
       }
       else {
-        if (pLevel == 0) instructions.text = "Move the mouse to tilt the platform and navigate the ball into the hole! ";
-        if (pLevel == 1) instructions.text = "Don't touch the red marble! So don't worry! It gets harder over time! ";
-        if (pLevel == 4) instructions.text = "Don't let the big gray one block your hole! It has to come in last!";
+        if (pLevel == 1) instructions.text = "Move the mouse to tilt the platform and navigate the ball into the hole! ";
       }
+        if ((random && pLevel == 2)) instructions.text = "Don't touch the red marble! So don't worry! It gets harder over time! ";
+        if ((random && pLevel == 5)) instructions.text = "Don't let the big gray one block your hole! It has to come in last!";
     }
     // for mobile debugging
     public void showText(string text) {

@@ -83,7 +83,7 @@ public class loadLevel : MonoBehaviour
       }
       else {
         GameObject.Find("triesTextReference").GetComponent<triesTextReference>().triesText.SetActive(true);
-        if (!Input.gyro.enabled && restartLevel && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) planeMovement.instructionsText.showText("click to place a new joystick. ");
+        if (!Input.gyro.enabled && restartLevel && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) planeMovement.instructionsText.showText("Click to place a new joystick. Move your mouse/finger to use the joystick. ");
         if (restartLevel) {
           triesManager = GameObject.Find("triesManager");
           triesManager.GetComponent<triesManager>().resetTries();

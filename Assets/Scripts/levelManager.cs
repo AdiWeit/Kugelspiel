@@ -64,7 +64,7 @@ public class levelManager : MonoBehaviour
            scoreObj.goalReached();
            liveManager.getLive();
            Debug.Log((currentLevel + 1) + ". Level reached!");
-           instructionsText.levelDone(currentLevel);
+           instructionsText.levelDone(currentLevel, random);
            if (GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
             gameStarted = false;
             // GameObject.Find("movingCube").GetComponent<movePlane>().waitForMousePosition = true;
@@ -76,14 +76,14 @@ public class levelManager : MonoBehaviour
             else {
               movePlane.waitForClick = true;
               movePlane.startPosition = new Vector3(0, 0, 0);
-              movePlane.instructionsText.showText("click to place a new joystick. ");
+              movePlane.instructionsText.showText("Click to place a new joystick. Move your mouse/finger to use the joystick. ");
             }
            }
            /*else */startLevel(currentLevel, false);
           } 
           else {
             levelLoader.LoadLevel(currentLevel, true, false);
-            movePlane.instructionsText.showText("click to place a new joystick. ");
+            movePlane.instructionsText.showText("Click to place a new joystick. Move your mouse/finger to use the joystick. ");
           }
         }
       }
@@ -115,7 +115,7 @@ public class levelManager : MonoBehaviour
         } 
         else {
           movePlane.startPosition = new Vector3(0, 0, 0);
-          movePlane.instructionsText.showText("click to place a new joystick. ");
+          movePlane.instructionsText.showText("Click to place a new joystick. Move your mouse/finger to use the joystick. ");
         }
       }
       if (random) {
