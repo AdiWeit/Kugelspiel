@@ -23,6 +23,7 @@ public class levelManager : MonoBehaviour
     public objectManager objManager;
     public liveManager liveManager;
     public loadLevel levelLoader;
+    public movePlane movePlane;
     public Text levelNrText;
     public borderObj borderObj;
     private Vector3 borderStartingPosition;
@@ -43,6 +44,7 @@ public class levelManager : MonoBehaviour
       
     }
     public void goalReached(GameObject marble) {
+      movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
       scoreObj = GameObject.Find("scoreText")?.GetComponent<scoreSystem>();
       instructionsText = GameObject.Find("gameInstructions")?.GetComponent<gameInstructions>();
       liveManager = GameObject.Find("liveManager")?.GetComponent<liveManager>();
@@ -65,14 +67,23 @@ public class levelManager : MonoBehaviour
            instructionsText.levelDone(currentLevel);
            if (GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
             gameStarted = false;
-            GameObject.Find("movingCube").GetComponent<movePlane>().waitForMousePosition = true;
-            GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
+            // GameObject.Find("movingCube").GetComponent<movePlane>().waitForMousePosition = true;
             GameObject.Find("movingCube").transform.eulerAngles = new Vector3(0, 0, 0);
+            if (Input.gyro.enabled) {
+              GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
+              movePlane.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. ");
+            }
+            else {
+              movePlane.waitForClick = true;
+              movePlane.startPosition = new Vector3(0, 0, 0);
+              movePlane.instructionsText.showText("click to place a new joystick. ");
+            }
            }
-           /*else */startLevel(currentLevel);
+           /*else */startLevel(currentLevel, false);
           } 
           else {
             levelLoader.LoadLevel(currentLevel, true, false);
+            movePlane.instructionsText.showText("click to place a new joystick. ");
           }
         }
       }
@@ -88,12 +99,25 @@ public class levelManager : MonoBehaviour
       liveManager.takeDamage(true);
       waitBlockedDisapears = false;
     }
-    public void startLevel(int number) 
+    public void startLevel(int number, bool restartLevel) 
     {
       objManager = GameObject.Find("objectManager")?.GetComponent<objectManager>();
       levelNrText = GameObject.Find("levelNrText")?.GetComponent<Text>();
       borderObj = GameObject.Find("border")?.GetComponent<borderObj>();
+      movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
       inGoalCount = 0;
+      if (restartLevel && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
+        movePlane.transform.eulerAngles = new Vector3(0, 0, 0);
+        GameObject.Find("levelManager").GetComponent<levelManager>().gameStarted = false;
+        if (Input.gyro.enabled) {
+          GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
+          movePlane.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. ");
+        } 
+        else {
+          movePlane.startPosition = new Vector3(0, 0, 0);
+          movePlane.instructionsText.showText("click to place a new joystick. ");
+        }
+      }
       if (random) {
         Debug.Log("endless runner selected!");
       if (number == 0) {
@@ -150,7 +174,7 @@ public class levelManager : MonoBehaviour
           if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
         }
         objManager.spawnSphere(0, 0, marbleDistribution);
-        if (!Input.gyro.enabled || !GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
+        if (!GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
           foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
           {
             StartCoroutine(marble.GetComponent<marbleParams>().setGravity(true));

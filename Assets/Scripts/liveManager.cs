@@ -28,9 +28,9 @@ public class liveManager : MonoBehaviour
       if (!levelManager.random) triesManager.GetComponent<triesManager>().increaceTries();
       if ((!levelManager.waitBlockedDisapears || byStuckOne) && levelManager.random) {
       lives--;
-      if (lives > 0) levelManager.startLevel(0);
+      if (lives > 0) levelManager.startLevel(0, true);
       else {
-        levelManager.startLevel(-1);
+        levelManager.startLevel(-1, true);
         lives = 5;
       }
       if (livesText) livesText.text = lives + " lives";

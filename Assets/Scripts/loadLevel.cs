@@ -57,10 +57,13 @@ public class loadLevel : MonoBehaviour
       if (random) Instantiate(endlessRunnerPref, new Vector3(446.5f, 302, 0), endlessRunnerPref.transform.rotation);
       else Instantiate(level[levelNr - 1], new Vector3(446.5f, 302, 0), level[levelNr - 1].transform.rotation);
       yield return new WaitForSeconds(0.01f);
-      if (pContinue && Input.gyro.enabled && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
+      if (pContinue && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) {
         levelManager.gameStarted = false;
-        GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
         GameObject.Find("movingCube").transform.eulerAngles = new Vector3(0, 0, 0);
+        if (Input.gyro.enabled) {
+          GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
+          planeMovement.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. ");
+        }
       }
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
       objectManager = GameObject.Find("objectManager").GetComponent<objectManager>();
@@ -69,7 +72,7 @@ public class loadLevel : MonoBehaviour
         Debug.Log("startPosition: " + pStartPosition.ToString());
         planeMovement.startPosition = new Vector3(0, 0, 0); // pStartPosition;
       }
-      else planeMovement.startPosition = pStartPosition;
+      else if (!GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) planeMovement.startPosition = pStartPosition;
       // if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
       if (Input.gyro.enabled && levelNr == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
@@ -80,7 +83,8 @@ public class loadLevel : MonoBehaviour
       }
       else {
         GameObject.Find("triesTextReference").GetComponent<triesTextReference>().triesText.SetActive(true);
-        if (!restartLevel) {
+        if (!Input.gyro.enabled && restartLevel && GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) planeMovement.instructionsText.showText("click to place a new joystick. ");
+        if (restartLevel) {
           triesManager = GameObject.Find("triesManager");
           triesManager.GetComponent<triesManager>().resetTries();
         }
@@ -91,7 +95,7 @@ public class loadLevel : MonoBehaviour
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       levelManager.random = random;
         if (!random) {
-        levelManager.startLevel(levelNr);
+        levelManager.startLevel(levelNr, false);
         if (levelManager.gameStarted)
         {
           foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
