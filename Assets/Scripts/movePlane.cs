@@ -24,6 +24,8 @@ public class movePlane : MonoBehaviour
     public GameObject borderReference;
     public bool waitForMousePosition = false;
     public bool waitForClick = false;
+    public bool resetJoystick = true;
+    private int bPressedTime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,23 +38,33 @@ public class movePlane : MonoBehaviour
       // instructionsText.levelDone(0);
     }
 
+    private void placeJoystick() {
+      if (waitForMousePosition) {
+        Time.timeScale = 1;
+        waitForMousePosition = false;
+        GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
+        if (referencePlane != null) referencePlane.transform.position = new Vector3(-500, referencePlane.transform.position.y, referencePlane.transform.position.z); // Destroy(referencePlane);
+      }
+      else {
+        if (!Input.gyro.enabled) startPosition = Input.mousePosition;
+        Debug.Log("Set start position");
+        if ((SystemInfo.deviceType == DeviceType.Handheld && Input.gyro.enabled) && !levelManager.gameStarted) beginGame();
+      }
+    }
     // Update is called once per frame
     void Update()
     {
+      bPressedTime++;
+      if (Input.GetButtonUp("Fire1")) {
+        if (bPressedTime < 30 && !resetJoystick) {
+          placeJoystick();
+        }
+        bPressedTime = 0;
+      }
       if (SceneManager.GetActiveScene().name == "levelSelection") return;
       GameObject pauseB = GameObject.Find("pause_B");
-      if (Input.GetButtonDown("Fire1") && !pauseMenu.activeInHierarchy && (Input.mousePosition.x < pauseB.transform.position.x - pauseB.GetComponent<RectTransform>().rect.width/2 || Input.mousePosition.y < pauseB.transform.position.y - pauseB.GetComponent<RectTransform>().rect.height/2)) {
-        if (waitForMousePosition) {
-          Time.timeScale = 1;
-          waitForMousePosition = false;
-          GameObject.Find("mouseBackCircle").transform.position = new Vector3(0, 0, -100);
-          if (referencePlane != null) referencePlane.transform.position = new Vector3(-500, referencePlane.transform.position.y, referencePlane.transform.position.z); // Destroy(referencePlane);
-        }
-        else {
-          if (!Input.gyro.enabled) startPosition = Input.mousePosition;
-          Debug.Log("Set start position");
-          if ((SystemInfo.deviceType == DeviceType.Handheld && Input.gyro.enabled) && !levelManager.gameStarted) beginGame();
-        }
+      if ((SystemInfo.deviceType != DeviceType.Handheld || resetJoystick) && Input.GetButtonDown("Fire1") && !pauseMenu.activeInHierarchy && (Input.mousePosition.x < pauseB.transform.position.x - pauseB.GetComponent<RectTransform>().rect.width/2 || Input.mousePosition.y < pauseB.transform.position.y - pauseB.GetComponent<RectTransform>().rect.height/2)) {
+        placeJoystick();
       }
       if (Input.gyro.enabled && !pauseMenu.activeInHierarchy) {
         // instructionsText.showText(Input.gyro.gravity.ToString());
