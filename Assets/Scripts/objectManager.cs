@@ -65,7 +65,10 @@ public class objectManager : MonoBehaviour
         marble.GetComponent<MeshRenderer>().material = heightSpeedMaterial;
         marble.GetComponent<Rigidbody>().maxAngularVelocity = 55;
       }
-      if (type.Contains("Bounce")) marble.GetComponent<SphereCollider>().material = bouncePhysicMaterial;
+      if (type.Contains("Bounce")) {
+        marble.GetComponent<SphereCollider>().material = bouncePhysicMaterial;
+        // marble.GetComponent<Rigidbody>().mass = 1;
+      }
       if (type == "littleBounce") {
         marble.GetComponent<MeshRenderer>().material = littleBounceMaterial;
       }
