@@ -29,6 +29,16 @@ public class loadLevel : MonoBehaviour
     }
     public void LoadLevel(int levelNr, bool pContinue, bool restartLevel)
     {
+      if (pContinue && !restartLevel && GameObject.Find("settingsManager").GetComponent<settingsManager>().skipLevels) {
+        Destroy(GameObject.Find("level_" + (levelNr - 1) + "(Clone)"));
+        while (levelNr < levelManager.highscores.Length && levelManager.highscores[levelNr]) {
+          levelNr++;
+        }
+        if (levelNr >= level.Length) {
+          openLevelSelection();
+          return;
+        }
+      }
       Debug.Log("Try to open " + "level_" + levelNr);
       if (levelNr <= level.Length) {
         StartCoroutine(manageModeSelection(false, restartLevel, levelNr, planeMovement.startPosition, pContinue));
@@ -55,7 +65,7 @@ public class loadLevel : MonoBehaviour
     public void loadHighscores(bool display) {
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       string[] convertList = PlayerPrefs.GetString("levelHighscores").Replace("[", "").Replace("]", "").Split(",");
-      for (int i = 0; i < convertList.Length; i++)
+      for (int i = 1; i < convertList.Length; i++)
       {
         if (convertList[i] != "") {
           levelManager.highscores = levelManager.setArrayIndexValue(bool.Parse(convertList[i]), i);

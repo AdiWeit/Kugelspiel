@@ -10,9 +10,11 @@ public class settingsManager : MonoBehaviour
   public GameObject sensitivitySlider;
   public GameObject resetBoxPositionCheck;
   public GameObject resetJoystick;
+  public GameObject skipLevelCheck;
   public GameObject continueLevelObj;
   public bool resetBoxPosition = true;
   public bool continueLevel = true;
+  public bool skipLevels = true;
   // Start is called before the first frame update
   void Start()
   {
@@ -33,6 +35,11 @@ public class settingsManager : MonoBehaviour
     movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
     movePlane.resetJoystick = pChecked;
     PlayerPrefs.SetInt("resetJoystick", pChecked ? 1 : 0);
+    PlayerPrefs.Save();
+  }
+  public void setSkipLevels(bool pChecked) {
+    skipLevels = pChecked;
+    PlayerPrefs.SetInt("skipLevels", pChecked ? 1 : 0);
     PlayerPrefs.Save();
   }
   public void getSettings(bool calledByMotionControlToggle) {
@@ -61,5 +68,8 @@ public class settingsManager : MonoBehaviour
     if (Input.gyro.enabled && PlayerPrefs.HasKey("resetBoxPositionGyro")) resetBoxPosition = PlayerPrefs.GetInt("resetBoxPositionGyro") == 1 ? true : false;
     if (!Input.gyro.enabled && PlayerPrefs.HasKey("resetBoxPositionJoystick")) resetBoxPosition = PlayerPrefs.GetInt("resetBoxPositionJoystick") == 1 ? true : false;
     resetBoxPositionCheck.GetComponent<Toggle>().isOn = resetBoxPosition;
+    // skipLevels
+    if (PlayerPrefs.HasKey("skipLevels")) skipLevels = PlayerPrefs.GetInt("skipLevels") == 1 ? true : false;
+    skipLevelCheck.GetComponent<Toggle>().isOn = skipLevels;
   }
 }

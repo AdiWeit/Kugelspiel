@@ -24,7 +24,7 @@ public class pause : MonoBehaviour
       if (Input.GetKeyDown("p")) {
         movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
         movePlane.sensitivityBefore = movePlane.sensitivity;
-        if (levelManager.gameStarted || movePlane.waitForMousePosition) pauseGame();
+        if (!pauseMenu.activeInHierarchy || movePlane.waitForMousePosition) pauseGame();
         else continueGame.continueGameF();
       }
     }
