@@ -3,7 +3,12 @@ guid: f60e6e871bbd3fba49023ac27d685b30
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - endlessRunnerPref: {instanceID: 0}
+  - objectManager: {instanceID: 0}
+  - settingsManager: {instanceID: 0}
+  - triesManager: {instanceID: 0}
+  - greenGlass: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -8,6 +8,7 @@ public class toggleMotionControl : MonoBehaviour
     // Start is called before the first frame update
     public GameObject sensitivityWarning;
     public GameObject sensitivityToggle;
+    public GameObject settingsManager;
     void Start()
     {
   //     gameObject.onValueChanged.AddListener((value) =>
@@ -36,5 +37,6 @@ public class toggleMotionControl : MonoBehaviour
         sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("joystickSensitivity");
         GameObject.Find("movingCube").GetComponent<LineRenderer>().enabled = true;
       }
+      settingsManager.GetComponent<settingsManager>().getSettings(true);
     }
 }

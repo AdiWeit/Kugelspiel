@@ -509,11 +509,13 @@ MonoBehaviour:
   objManager: {fileID: 0}
   liveManager: {fileID: 0}
   levelLoader: {fileID: 0}
+  movePlane: {fileID: 0}
   levelNrText: {fileID: 0}
   borderObj: {fileID: 0}
   gameStarted: 0
   random: 0
   sceneBefore: 
+  highscores: 
 --- !u!1 &1084623076
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +869,7 @@ MonoBehaviour:
   objectManager: {fileID: 0}
   settingsManager: {fileID: 0}
   triesManager: {fileID: 0}
+  greenGlass: {fileID: 2100000, guid: 87682a3f5979bbd728d213ebea46fa8b, type: 2}
   levelSelected: 0
 --- !u!4 &1959053672
 Transform:
