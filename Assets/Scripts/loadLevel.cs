@@ -51,6 +51,7 @@ public class loadLevel : MonoBehaviour
     }
     public void beginEndlessRun()
     {
+      GameObject.Find("randomSettingsManager").GetComponent<endlessRunnerSettingsManager>().getSettings();
       StartCoroutine(manageModeSelection(true, false, 1, planeMovement.startPosition, false));
       Debug.Log("begin endless run");
     }
@@ -75,7 +76,7 @@ public class loadLevel : MonoBehaviour
     }
     public IEnumerator manageModeSelection(bool random, bool restartLevel, int levelNr, /*bool gameStarted, int pSphereCount, */Vector3 pStartPosition, bool pContinue)
     {
-      if (!restartLevel && !pContinue) SceneManager.LoadScene("level_scene");
+      if (!restartLevel && !pContinue && SceneManager.GetActiveScene().name != "level_scene") SceneManager.LoadScene("level_scene");
       else {
         if (random) Destroy(GameObject.Find("endlessRunner(Clone)"));
         else {
@@ -85,6 +86,8 @@ public class loadLevel : MonoBehaviour
       }
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
+      GameObject.Find("endlessSettingsMenu").SetActive(false);
+      GameObject.Find("levelUIReference").GetComponent<levelUIRef>().levelUI.SetActive(true);
       if (random) Instantiate(endlessRunnerPref, new Vector3(446.5f, 302, 0), endlessRunnerPref.transform.rotation);
       else Instantiate(level[levelNr - 1], new Vector3(446.5f, 302, 0), level[levelNr - 1].transform.rotation);
       yield return new WaitForSeconds(0.01f);

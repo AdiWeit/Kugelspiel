@@ -34,6 +34,7 @@ public class levelManager : MonoBehaviour
     public bool random = false;
     public string sceneBefore;
     public bool[] highscores = new bool[1];
+    public GameObject randomSettingsManager;
     void Start()
     {
       levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
@@ -182,14 +183,14 @@ public class levelManager : MonoBehaviour
       }
         string[] marbleDistribution = new string [sphereCount];
         // manage marble type distribution (Verteilung)
-        if (currentLevel < 4 && currentLevel > 0) marbleDistribution[0] = "enemy";
-        if (Mathf.Floor(currentLevel / 4) <= 4) {
+        if (currentLevel < 4 && currentLevel > 0 && randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().redMarbles > 0) marbleDistribution[0] = "enemy";
+        if (Mathf.Floor(currentLevel / 4) <= randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().grayMarbles) {
           for (int i = 0; i < Mathf.Floor(currentLevel / 4); i++)
           {
             marbleDistribution[i] = "blocker";
           }
         }
-        if (Mathf.Floor((currentLevel - 4) / 2) <= 4 && currentLevel > 3) {
+        if (Mathf.Floor((currentLevel - 4) / 2) + Mathf.Floor((currentLevel - 7) / 3) <= randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().blueMarbles && currentLevel > 3) {
           int mediumSpeedCounter = 0;
           for (int i = 0; mediumSpeedCounter < Mathf.Floor((currentLevel - 3) / 2) && i < marbleDistribution.Length; i++)
           {
@@ -199,12 +200,12 @@ public class levelManager : MonoBehaviour
             }
           }
         }
-        if (Mathf.Floor((currentLevel - 7) / 3) <= 4 && currentLevel > 7) {
+        if (Mathf.Floor((currentLevel - 4) / 2) + Mathf.Floor((currentLevel - 7) / 3) <= randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().blueMarbles && currentLevel > 7) {
           int mediumSpeedCounter = 0;
           for (int i = 0; mediumSpeedCounter < Mathf.Floor((currentLevel - 7) / 3) && i < marbleDistribution.Length; i++)
           {
             if (marbleDistribution[i] == null) {
-              marbleDistribution[i] = "heighSpeed";
+              marbleDistribution[i] = "highSpeed";
               mediumSpeedCounter++;
             }
           }
@@ -212,6 +213,12 @@ public class levelManager : MonoBehaviour
         if (currentLevel > 5 && currentLevel <= 9) marbleDistribution[sphereCount - 1] = "littleBounce";
         if (currentLevel > 9 && currentLevel <= 13) marbleDistribution[sphereCount - 2] = "mediumBounce";
         if (currentLevel > 13) marbleDistribution[sphereCount - 3] = "muchBounce";
+        for (int i = 0; i < Mathf.Floor((currentLevel - 6) / 4) && i < randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().orangeMarbles - 1; i++)
+          {
+            if (marbleDistribution[i] == null) {
+              marbleDistribution[i] = "littleBounce";
+            }
+          }
         for (int i = 0; i < marbleDistribution.Length; i++) {
           if (marbleDistribution[i] == null) marbleDistribution[i] = "normal";
         }

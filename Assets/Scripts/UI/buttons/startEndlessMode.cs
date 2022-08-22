@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class startEndlessMode : MonoBehaviour
@@ -20,6 +21,6 @@ public class startEndlessMode : MonoBehaviour
     }
     void clicked()
     {
-      levelLoader.beginEndlessRun();
+      SceneManager.LoadScene("level_scene");
     }
 }

@@ -61,7 +61,7 @@ public class objectManager : MonoBehaviour
         marble.GetComponent<MeshRenderer>().material = mediumSpeedMaterial;
         marble.GetComponent<Rigidbody>().maxAngularVelocity = 33;
       }
-      if (type == "heighSpeed") {
+      if (type == "highSpeed") {
         marble.GetComponent<MeshRenderer>().material = heightSpeedMaterial;
         marble.GetComponent<Rigidbody>().maxAngularVelocity = 55;
       }
