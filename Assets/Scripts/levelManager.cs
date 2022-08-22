@@ -38,7 +38,6 @@ public class levelManager : MonoBehaviour
     {
       levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
       if (GameObject.FindObjectsOfType<levelManager>().Length > 1) Destroy(gameObject);
-      Debug.Log(convertArrayToString(highscores));
       // DontDestroyOnLoad(gameObject);
     }
 
@@ -89,7 +88,6 @@ public class levelManager : MonoBehaviour
             // highscores[currentLevel] = true;
             levelLoader.loadHighscores(false);
             highscores = setArrayIndexValue(true, currentLevel - 1);
-            Debug.Log("highscores: " + convertArrayToString(highscores));
             PlayerPrefs.SetString("levelHighscores", convertArrayToString(highscores));
             PlayerPrefs.Save();
             if (GameObject.Find("settingsManager").GetComponent<settingsManager>().continueLevel) {
@@ -108,21 +106,17 @@ public class levelManager : MonoBehaviour
       }
     }
     public bool[] setArrayIndexValue(bool value, int index) {
-      Debug.Log("set index " + index);
-      Debug.Log(convertArrayToString(highscores));
       if (highscores.Length <= index) {
         bool[] newArray = new bool[index + 1];
         for (int i = 0; i < newArray.Length; i++)
         {
           newArray[i] = false;
         }
-        Debug.Log("highscores after everything false: " + convertArrayToString(highscores));
         for (int i = 0; i < highscores.Length; i++)
         {
           newArray[i] = highscores[i];
         }
         newArray[index] = value;
-        Debug.Log(convertArrayToString(newArray));
         return newArray;
       }
       else {

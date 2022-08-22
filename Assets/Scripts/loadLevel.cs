@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json; // on the top of the file.
 using UnityEngine.UI;
 
 public class loadLevel : MonoBehaviour
@@ -55,44 +54,14 @@ public class loadLevel : MonoBehaviour
     }
     public void loadHighscores(bool display) {
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
-      // levelManager.highscores = JsonConvert.DeserializeObject<bool[]>(PlayerPrefs.GetString("levelHighscores"));
       string[] convertList = PlayerPrefs.GetString("levelHighscores").Replace("[", "").Replace("]", "").Split(",");
-      Debug.Log("convertList: ");
-      Debug.Log(convertArrayToString(convertList));
-      if (convertList[0] == "") convertList = popArrayInxed(convertList);
       for (int i = 0; i < convertList.Length; i++)
       {
-        Debug.Log(convertList[i]);
-        // if (levelManager.highscores.Length - 1 < i) {
         if (convertList[i] != "") {
-          Debug.Log("old highscores: " + levelManager.convertArrayToString(levelManager.highscores));
           levelManager.highscores = levelManager.setArrayIndexValue(bool.Parse(convertList[i]), i);
         }
-        // }
-        // else {
-        //   levelManager.highscores[i] = bool.Parse(convertList[i]);
-        // }
         if (levelManager.highscores[i] && display) GameObject.Find("level " + i).GetComponent<Image>().color = greenGlass.color;
       }
-      // levelManager.highscores = Array.parse(PlayerPrefs.GetString());
-    }
-    public string[] popArrayInxed(string[] array) {
-      string[] newArray = new string[array.Length - 1];
-      for (int i = 1; i < newArray.Length; i++)
-      {
-        newArray[i - 1] = array[i];
-      }
-      return newArray;
-    }
-    public string convertArrayToString (string[] array) {
-      string pString = "[";
-      for (int i = 0; i < array.Length; i++)
-      {
-        pString += array[i];
-        if (i + 1 != array.Length) pString += ",";
-      }
-      pString += "]";
-      return pString;
     }
     public IEnumerator manageModeSelection(bool random, bool restartLevel, int levelNr, /*bool gameStarted, int pSphereCount, */Vector3 pStartPosition, bool pContinue)
     {

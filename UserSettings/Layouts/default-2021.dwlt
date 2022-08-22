@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1600
     height: 1120
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 316
     height: 648
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -215,15 +215,15 @@ MonoBehaviour:
     y: 0
     width: 895
     height: 648
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 14}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 14}
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 389
     height: 1070
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -336,9 +336,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 9aebffffe6ebffff14edffff24edffff36edffffceeeffff1aefffff24efffff28efffff34efffff82f0ffffcef0fffffcf1ffff0cf2ffff1ef2ffffaef3fffffaf3ffff28f5ffff38f5ffff4af5ffffe2f6ffffa2f7ffffeef7ffff44f9ffff62f9ffff6cf9ffff32fbfffff4720000fa730000088200000e830000
+      m_SelectedIDs: 68900000
+      m_LastClickedID: 36968
+      m_ExpandedIDs: 9c59ffffee6affff6474ffffd479ffff867fffff7c83ffff04d1ffffd2d1ffff42d6ffff04d8ffffaadaffffe0dbffffa6e2fffff0e2ffff4cf3ffff9af3fffff2f4ffff10f5ffff1af5ffff2cfbfffff4ffffff1c7f0000b08b0000b6ef000034f5000024fe0000a4030100a80c010016210100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -587,9 +587,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 605.447, y: 318.8947, z: 0}
+    m_Target: {x: 422.0292, y: 318.89517, z: 1.0375977}
     speed: 2
-    m_Value: {x: 605.447, y: 318.8947, z: 0}
+    m_Value: {x: 422.0292, y: 318.89517, z: 1.0375977}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -640,9 +640,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 433.99237
+    m_Target: 301.83234
     speed: 2
-    m_Value: 433.99237
+    m_Value: 301.83234
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -782,7 +782,7 @@ MonoBehaviour:
     x: 316
     y: 82
     width: 893
-    height: 628
+    height: 627
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -828,22 +828,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/material
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/material
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /home/adi/Data/Adi/Unity Projekte/3D/Kugelspiel
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6c6d0000
-    m_LastClickedID: 28012
-    m_ExpandedIDs: 000000001c6d00001e6d0000206d0000226d0000246d000000ca9a3b
+    m_SelectedIDs: 1e7c0000
+    m_LastClickedID: 31774
+    m_ExpandedIDs: 00000000206d0000226d0000246d0000266d0000286d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -871,7 +871,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001c6d00001e6d0000206d0000226d0000246d0000
+    m_ExpandedIDs: 00000000206d0000226d0000246d0000266d0000286d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -896,8 +896,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 00800000
+    m_LastClickedInstanceID: 32768
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000a25e0000d28d000000000000
     m_RenameOverlay:
@@ -915,7 +915,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
