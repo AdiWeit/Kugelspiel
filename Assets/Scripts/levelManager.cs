@@ -74,7 +74,7 @@ public class levelManager : MonoBehaviour
             GameObject.Find("movingCube").transform.eulerAngles = new Vector3(0, 0, 0);
             if (Input.gyro.enabled) {
               GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
-              movePlane.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. ");
+              movePlane.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. Alternatively, click two times (doubleclick possible) to start the level with your current tilt. You can also turn this off in the settings.");
             }
             else {
               movePlane.waitForClick = true;

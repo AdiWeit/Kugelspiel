@@ -93,7 +93,7 @@ public class loadLevel : MonoBehaviour
         GameObject.Find("movingCube").transform.eulerAngles = new Vector3(0, 0, 0);
         if (Input.gyro.enabled) {
           GameObject.Find("playBReference").GetComponent<playBReference>().playB.GetComponent<continueGame>().continueGameF();
-          planeMovement.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. ");
+          planeMovement.instructionsText.showText("tilt your device like it is lying on a table, so the red indication border has to be in the same angle the box is. Alternatively, click two times (doubleclick possible) to start the level with your current tilt. You can also turn this off in the settings.");
         }
       }
       planeMovement = GameObject.Find("movingCube").GetComponent<movePlane>();
@@ -105,7 +105,7 @@ public class loadLevel : MonoBehaviour
       }
       else if (!GameObject.Find("settingsManager").GetComponent<settingsManager>().resetBoxPosition) planeMovement.startPosition = pStartPosition;
       // if (!random && levelManager.gameStarted) GameObject.Find("gameInstructions").GetComponent<gameInstructions>().levelDone((levelNr - 1));
-      if (Input.gyro.enabled && levelNr == 1) {
+      if (!PlayerPrefs.HasKey("useGyro") || PlayerPrefs.GetInt("useGyro") == 1) {
         GameObject.Find("gameInstructions").GetComponent<gameInstructions>().instructions.text = "Click on the screen to start the game. The box will instantly have the tilt your device has!";
       }
       if (random) {
@@ -121,10 +121,10 @@ public class loadLevel : MonoBehaviour
         }
       }
       settingsManager = GameObject.Find("settingsManager").GetComponent<settingsManager>();
-      settingsManager.getSettings(false);
       yield return new WaitForSeconds(1);
       levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
       levelManager.random = random;
+      settingsManager.getSettings(false);
         if (!random) {
         levelManager.startLevel(levelNr, false);
         if (levelManager.gameStarted)

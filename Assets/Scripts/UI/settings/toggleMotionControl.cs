@@ -9,19 +9,6 @@ public class toggleMotionControl : MonoBehaviour
     public GameObject sensitivityWarning;
     public GameObject sensitivityToggle;
     public GameObject settingsManager;
-    void Start()
-    {
-  //     gameObject.onValueChanged.AddListener((value) =>
-  //   {
-  //       MyListener(value);
-  //  });//Do this in Start() for example
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void toggleMotionControlF()
     {
       Input.gyro.enabled = GetComponent<Toggle>().isOn;
@@ -31,12 +18,12 @@ public class toggleMotionControl : MonoBehaviour
       PlayerPrefs.Save();
       if (Input.gyro.enabled) {
         sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("gyroSensitivity");
-        GameObject.Find("movingCube").GetComponent<LineRenderer>().enabled = false;
       }
       else {
         sensitivityToggle.GetComponent<Slider>().value = PlayerPrefs.GetFloat("joystickSensitivity");
-        GameObject.Find("movingCube").GetComponent<LineRenderer>().enabled = true;
       }
+      GameObject.Find("movingCube").GetComponent<LineRenderer>().enabled = !Input.gyro.enabled;
       settingsManager.GetComponent<settingsManager>().getSettings(true);
+      settingsManager.GetComponent<settingsManager>().settingChanged();
     }
 }

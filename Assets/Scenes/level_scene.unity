@@ -1390,11 +1390,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gyroCheck: {fileID: 1303091306}
+  levelManager: {fileID: 99772053}
   sensitivitySlider: {fileID: 2095048570}
   resetBoxPositionCheck: {fileID: 941707501}
-  resetJoystick: {fileID: 1232428731}
+  resetJoystickCheck: {fileID: 1232428731}
   skipLevelCheck: {fileID: 1713334799}
-  continueLevelObj: {fileID: 1465660633}
+  continueLevelCheck: {fileID: 1465660633}
   resetBoxPosition: 1
   continueLevel: 1
   skipLevels: 1

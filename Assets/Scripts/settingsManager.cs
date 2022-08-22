@@ -7,11 +7,12 @@ public class settingsManager : MonoBehaviour
 {
   private movePlane movePlane;
   public GameObject gyroCheck;
+  public GameObject levelManager;
   public GameObject sensitivitySlider;
   public GameObject resetBoxPositionCheck;
-  public GameObject resetJoystick;
+  public GameObject resetJoystickCheck;
   public GameObject skipLevelCheck;
-  public GameObject continueLevelObj;
+  public GameObject continueLevelCheck;
   public bool resetBoxPosition = true;
   public bool continueLevel = true;
   public bool skipLevels = true;
@@ -23,24 +24,30 @@ public class settingsManager : MonoBehaviour
   public void setContinueLevel(bool pChecked) {
     continueLevel = pChecked;
     PlayerPrefs.SetInt("continueLevel", pChecked ? 1 : 0);
-    PlayerPrefs.Save();
+    settingChanged();
   }
   public void setResetBoxPosition(bool pChecked) {
     resetBoxPosition = pChecked;
     if (Input.gyro.enabled) PlayerPrefs.SetInt("resetBoxPositionGyro", pChecked ? 1 : 0);
     else PlayerPrefs.SetInt("resetBoxPositionJoystick", pChecked ? 1 : 0);
-    PlayerPrefs.Save();
+    settingChanged();
   }
   public void setResetJoystick(bool pChecked) {
     movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
     movePlane.resetJoystick = pChecked;
     PlayerPrefs.SetInt("resetJoystick", pChecked ? 1 : 0);
-    PlayerPrefs.Save();
+    settingChanged();
   }
   public void setSkipLevels(bool pChecked) {
     skipLevels = pChecked;
     PlayerPrefs.SetInt("skipLevels", pChecked ? 1 : 0);
+    settingChanged();
+  }
+  public void settingChanged() {
     PlayerPrefs.Save();
+    resetJoystickCheck.SetActive(!Input.gyro.enabled);
+    continueLevelCheck.SetActive(!levelManager.GetComponent<levelManager>().random);
+    skipLevelCheck.SetActive(continueLevelCheck.GetComponent<Toggle>().isOn);
   }
   public void getSettings(bool calledByMotionControlToggle) {
     movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
@@ -60,9 +67,9 @@ public class settingsManager : MonoBehaviour
     if (!calledByMotionControlToggle) motionControl.GetComponent<toggleMotionControl>().toggleMotionControlF();
     // resetJoystick
     if (PlayerPrefs.HasKey("resetJoystick")) movePlane.resetJoystick = PlayerPrefs.GetInt("resetJoystick") == 1 ? true : false;
-    resetJoystick.GetComponent<Toggle>().isOn = movePlane.resetJoystick;
+    resetJoystickCheck.GetComponent<Toggle>().isOn = movePlane.resetJoystick;
     // continueLevel
-    continueLevelObj.GetComponent<Toggle>().isOn = continueLevel;
+    continueLevelCheck.GetComponent<Toggle>().isOn = continueLevel;
     if (PlayerPrefs.HasKey("continueLevel")) continueLevel = PlayerPrefs.GetInt("continueLevel") == 1 ? true : false;
     // resetBoxPosition
     if (Input.gyro.enabled && PlayerPrefs.HasKey("resetBoxPositionGyro")) resetBoxPosition = PlayerPrefs.GetInt("resetBoxPositionGyro") == 1 ? true : false;
@@ -71,5 +78,6 @@ public class settingsManager : MonoBehaviour
     // skipLevels
     if (PlayerPrefs.HasKey("skipLevels")) skipLevels = PlayerPrefs.GetInt("skipLevels") == 1 ? true : false;
     skipLevelCheck.GetComponent<Toggle>().isOn = skipLevels;
+    settingChanged();
   }
 }

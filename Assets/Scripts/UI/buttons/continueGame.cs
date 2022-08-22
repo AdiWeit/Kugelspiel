@@ -30,7 +30,7 @@ public class continueGame : MonoBehaviour
         borderPos.y = 0.97f;
         referencePlaneBorder.transform.position = borderPos;
         movePlane.referencePlane = referencePlaneBorder;
-        movePlane.instructionsText.showText("tilt your device so the red indication border is in the same angle the box is. This way, you are back to the position you paused with.");
+        movePlane.instructionsText.showText("tilt your device so the red indication border is in the same angle the box is. This way, you are back to the position you paused with. Alternatively, click two times (doubleclick possible) to start the level with your current tilt.");
       }
       else {
         movePlane.instructionsText.showText("click on the red point to continue the game with the same box tilt you started with. ");
