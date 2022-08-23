@@ -57,7 +57,7 @@ public class levelManager : MonoBehaviour
       {
         Destroy(marble, 0.25f);
         inGoalCount++;
-        if (GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0) {
+        if ((GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type == "blocker").ToArray().Length == 0 && GameObject.FindGameObjectsWithTag("marble").Where(o => !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length <= 1) || GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0) {
           inGoalCount = sphereCount;
         }
         Debug.Log(inGoalCount + "/" + sphereCount + " marbles reached the goal!");

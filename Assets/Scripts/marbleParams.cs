@@ -15,7 +15,6 @@ public class marbleParams : MonoBehaviour
     void Start()
     {
       if (SceneManager.GetActiveScene().name.Contains("level")) {
-        Debug.Log("set marble type");
         GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, false, type);
         if (speed != 33 && speed != 55) gameObject.GetComponent<Rigidbody>().maxAngularVelocity = speed;
       }

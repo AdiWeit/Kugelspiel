@@ -34,7 +34,7 @@ public class loadLevel : MonoBehaviour
         while (levelNr < levelManager.highscores.Length && levelManager.highscores[levelNr]) {
           levelNr++;
         }
-        if (levelNr >= level.Length) {
+        if (levelNr > level.Length) {
           openLevelSelection();
           return;
         }
