@@ -133,6 +133,7 @@ public class movePlane : MonoBehaviour
     {
       foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
       {
+        marble.GetComponent<SphereCollider>().isTrigger = false;
         marble.GetComponent<Rigidbody>().useGravity = true;
       }
       levelManager.gameStarted = true;

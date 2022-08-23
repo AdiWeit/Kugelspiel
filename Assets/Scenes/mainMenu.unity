@@ -516,6 +516,7 @@ MonoBehaviour:
   random: 0
   sceneBefore: 
   highscores: 
+  randomSettingsManager: {fileID: 0}
 --- !u!1 &1084623076
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class marbleParams : MonoBehaviour
     public string type = "normal";
     public int speed = 5;
     private Vector3 positionBefore;
+    private int repositionMarbleCount;
+    private levelManager levelManager;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,8 @@ public class marbleParams : MonoBehaviour
         GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, false, type);
       }
       gameObject.GetComponent<Rigidbody>().useGravity = false;
+      repositionMarbleCount = 0;
+      levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
     }
     // Update is called once per frame
     void Update()
@@ -26,6 +30,21 @@ public class marbleParams : MonoBehaviour
     public IEnumerator setGravity(bool pUseGravity)
     {
       yield return new WaitForSeconds(0.5f);
-      if (gameObject) gameObject.GetComponent<Rigidbody>().useGravity = pUseGravity;
+      if (gameObject) {
+        gameObject.GetComponent<SphereCollider>().isTrigger = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = pUseGravity;
+      }
+    }
+    private void OnTriggerEnter(Collider other) {
+      if (other.gameObject.tag == "marble" && !gameObject.GetComponent<Rigidbody>().useGravity) {
+        if (repositionMarbleCount < 4 && GameObject.Find("levelManager").GetComponent<levelManager>().random) {
+          gameObject.transform.position = new Vector3(Random.Range(-4.84f, 3.8f), 3.88f, Random.Range(-4.46f, 4.36f));
+          repositionMarbleCount++;
+        }
+        else {
+          levelManager.spawnHeight += 1.9f;
+          gameObject.transform.position = new Vector3(0, levelManager.spawnHeight, 0);
+        }
+      }
     }
 }

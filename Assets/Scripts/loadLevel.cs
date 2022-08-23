@@ -134,6 +134,7 @@ public class loadLevel : MonoBehaviour
         {
           foreach (GameObject marble in GameObject.FindGameObjectsWithTag("marble"))
           {
+            marble.GetComponent<SphereCollider>().isTrigger = false;
             marble.GetComponent<Rigidbody>().useGravity = true;
           }
         }

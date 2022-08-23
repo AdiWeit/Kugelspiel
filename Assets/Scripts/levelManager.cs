@@ -13,7 +13,6 @@ using System.Xml;
 
 public class levelManager : MonoBehaviour
 {
-    // public int sphereCount = 8;
     public int sphereCount = 1;
     public int inGoalCount = 0;
     // private int currentLevel = 7;
@@ -35,6 +34,7 @@ public class levelManager : MonoBehaviour
     public string sceneBefore;
     public bool[] highscores = new bool[1];
     public GameObject randomSettingsManager;
+    public float spawnHeight = 3.8f;
     void Start()
     {
       levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
@@ -210,9 +210,11 @@ public class levelManager : MonoBehaviour
             }
           }
         }
-        if (currentLevel > 5 && currentLevel <= 9) marbleDistribution[sphereCount - 1] = "littleBounce";
-        if (currentLevel > 9 && currentLevel <= 13) marbleDistribution[sphereCount - 2] = "mediumBounce";
-        if (currentLevel > 13) marbleDistribution[sphereCount - 3] = "muchBounce";
+        if (randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().orangeMarbles > 0) {
+          if (currentLevel > 5 && currentLevel <= 9) marbleDistribution[sphereCount - 1] = "littleBounce";
+          if (currentLevel > 9 && currentLevel <= 13) marbleDistribution[sphereCount - 2] = "mediumBounce";
+          if (currentLevel > 13) marbleDistribution[sphereCount - 3] = "muchBounce";
+        }
         for (int i = 0; i < Mathf.Floor((currentLevel - 6) / 4) && i < randomSettingsManager.GetComponent<endlessRunnerSettingsManager>().orangeMarbles - 1; i++)
           {
             if (marbleDistribution[i] == null) {
