@@ -86,7 +86,7 @@ public class loadLevel : MonoBehaviour
       }
       // yield return new WaitForSeconds(0.1f);
       yield return new WaitForSeconds(0.01f);
-      GameObject.Find("endlessSettingsMenu").SetActive(false);
+      if (GameObject.Find("endlessSettingsMenu") != null) GameObject.Find("endlessSettingsMenu").SetActive(false);
       GameObject.Find("levelUIReference").GetComponent<levelUIRef>().levelUI.SetActive(true);
       if (random) Instantiate(endlessRunnerPref, new Vector3(446.5f, 302, 0), endlessRunnerPref.transform.rotation);
       else Instantiate(level[levelNr - 1], new Vector3(446.5f, 302, 0), level[levelNr - 1].transform.rotation);

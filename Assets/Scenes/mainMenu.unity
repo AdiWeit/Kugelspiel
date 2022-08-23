@@ -517,6 +517,7 @@ MonoBehaviour:
   sceneBefore: 
   highscores: 
   randomSettingsManager: {fileID: 0}
+  spawnHeight: 3.8
 --- !u!1 &1084623076
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level:
-  - {fileID: 1472174937839137728, guid: 31d7517e929aa639eaf660113bc691de, type: 3}
+  - {fileID: 1472174937839137728, guid: 7cc1b1f5deb778ce089b0e02f08d5f73, type: 3}
   - {fileID: 3103371196886136328, guid: f7a7f6d7ae6bb57d19b1e6aff9436ff0, type: 3}
   - {fileID: 4984167939906899869, guid: 27ca06802f86528edbe88f224543bb90, type: 3}
   - {fileID: 3596533568056253274, guid: da5db5813c9e72828a8a88864efcba13, type: 3}

@@ -36,8 +36,8 @@ public class marbleParams : MonoBehaviour
       }
     }
     private void OnTriggerEnter(Collider other) {
-      if (other.gameObject.tag == "marble" && !gameObject.GetComponent<Rigidbody>().useGravity) {
-        if (repositionMarbleCount < 4 && GameObject.Find("levelManager").GetComponent<levelManager>().random) {
+      if (other.gameObject.tag == "marble" && !gameObject.GetComponent<Rigidbody>().useGravity && GameObject.Find("levelManager").GetComponent<levelManager>().random) {
+        if (repositionMarbleCount < 4) {
           gameObject.transform.position = new Vector3(Random.Range(-4.84f, 3.8f), 3.88f, Random.Range(-4.46f, 4.36f));
           repositionMarbleCount++;
         }
