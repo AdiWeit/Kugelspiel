@@ -33,7 +33,6 @@ public class openLevel : MonoBehaviour
         return;
       }
       gameObject.transform.GetChild(0).GetComponent<Text>().text = "start!";
-      Debug.Log("try to destroy " + "level_" + levelManager.currentLevel + "(Clone)");
       levelPreviewManager = GameObject.Find("levelPreviewManager").GetComponent<levelPreviewManager>();
       levelPreviewManager.waitForMarblePosition = true;
       if (levelManager.currentLevel != -1) {

@@ -867,6 +867,14 @@ MonoBehaviour:
   - {fileID: 8118774178866477941, guid: 6855132f5bd94d1c6a29cca92c015fc1, type: 3}
   - {fileID: 1649851049540200275, guid: 7d439f0f7dffd68779a8eddd793a1324, type: 3}
   - {fileID: 464970245989604028, guid: e3ed6dd98ca685a22b700c28c0146ec7, type: 3}
+  - {fileID: 464970245989604028, guid: 7668531e37c69ecbf895dfd57c3d62dc, type: 3}
+  - {fileID: 464970245989604028, guid: 26d3af73eb67683e392384523364c39a, type: 3}
+  - {fileID: 464970245989604028, guid: 53c8a4ea92c36848c86457e966302d52, type: 3}
+  - {fileID: 3103371196886136328, guid: 1e8b6e56980ed0883a1fb77a0e1de784, type: 3}
+  - {fileID: 3103371196886136328, guid: ed907f11ce55e289fa77e9080b1a4466, type: 3}
+  - {fileID: 3103371196886136328, guid: 1805356ff430c1ac8a275427fb26c04b, type: 3}
+  - {fileID: 3103371196886136328, guid: 6e766dac3470ba0ba87f4524d644f57f, type: 3}
+  - {fileID: 3103371196886136328, guid: 25f61976c9355055c860048f84fd6c7a, type: 3}
   endlessRunnerPref: {fileID: 1472174937839137728, guid: 74a2f8b7693ae6fb48e06b9c50bceaf7, type: 3}
   objectManager: {fileID: 0}
   settingsManager: {fileID: 0}

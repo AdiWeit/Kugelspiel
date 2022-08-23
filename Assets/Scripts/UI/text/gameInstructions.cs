@@ -29,8 +29,10 @@ public class gameInstructions : MonoBehaviour
       else {
         if (pLevel == 1) instructions.text = "Move the mouse to tilt the platform and navigate the ball into the hole! ";
       }
-        if ((random && pLevel == 2)) instructions.text = "Don't touch the red marble! So don't worry! It gets harder over time! ";
-        if ((random && pLevel == 5)) instructions.text = "Don't let the big gray one block your hole! It has to come in last!";
+        if ((random && pLevel == 2) || (!random && pLevel == 16)) instructions.text = "Don't touch the red marble! So don't worry! It gets harder over time! ";
+        if ((random && pLevel == 5) || (!random && pLevel == 13)) instructions.text = "Don't let the big gray one block your hole! It has to come in last!";
+        if ((random && pLevel == 6) || (!random && pLevel == 14)) instructions.text = "Blue marbles roll faster!";
+        if ((random && pLevel == 7)) instructions.text = "Orange marbles bounce, so they can overcome the borders. Always have an eye on them!";
     }
     // for mobile debugging
     public void showText(string text) {

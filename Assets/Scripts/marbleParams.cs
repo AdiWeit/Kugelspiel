@@ -14,9 +14,10 @@ public class marbleParams : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      gameObject.GetComponent<Rigidbody>().maxAngularVelocity = speed;
       if (SceneManager.GetActiveScene().name.Contains("level")) {
+        Debug.Log("set marble type");
         GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, false, type);
+        if (speed != 33 && speed != 55) gameObject.GetComponent<Rigidbody>().maxAngularVelocity = speed;
       }
       gameObject.GetComponent<Rigidbody>().useGravity = false;
       repositionMarbleCount = 0;
