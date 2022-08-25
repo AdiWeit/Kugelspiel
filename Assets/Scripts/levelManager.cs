@@ -28,6 +28,7 @@ public class levelManager : MonoBehaviour
     public Text levelNrText;
     public borderObj borderObj;
     private Vector3 borderStartingPosition;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     public bool gameStarted = false;
     public bool random = false;
@@ -38,6 +39,7 @@ public class levelManager : MonoBehaviour
     void Start()
     {
       levelLoader = GameObject.Find("levelLoader")?.GetComponent<loadLevel>();
+      audioSource = gameObject.GetComponent<AudioSource>();
       if (GameObject.FindObjectsOfType<levelManager>().Length > 1) Destroy(gameObject);
       // DontDestroyOnLoad(gameObject);
     }
@@ -56,6 +58,8 @@ public class levelManager : MonoBehaviour
       if (marble.GetComponent<marbleParams>().type != "blocker" || (marble.GetComponent<marbleParams>().type == "blocker" && GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0))
       {
         Destroy(marble, 0.25f);
+        audioSource.clip = GameObject.Find("soundsReference").GetComponent<soundsReference>().inGoal;
+        audioSource.Play();
         inGoalCount++;
         if ((GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type == "blocker").ToArray().Length == 0 && GameObject.FindGameObjectsWithTag("marble").Where(o => !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length <= 1) || GameObject.FindGameObjectsWithTag("marble").Where(o => o.GetComponent<marbleParams>().type != "blocker" && !o.GetComponent<marbleParams>().type.Contains("Bounce")).ToArray().Length == 0) {
           inGoalCount = sphereCount;
@@ -138,6 +142,8 @@ public class levelManager : MonoBehaviour
     IEnumerator marbleBlocked()
     {
       Debug.Log("restart Level because of blocked marble");
+      audioSource.clip = GameObject.Find("soundsReference").GetComponent<soundsReference>().goalBlocked[UnityEngine.Random.Range(0, GameObject.Find("soundsReference").GetComponent<soundsReference>().goalBlocked.Length - 1)];
+      audioSource.Play();
       yield return new WaitForSeconds(2);
       liveManager.takeDamage(true);
       waitBlockedDisapears = false;

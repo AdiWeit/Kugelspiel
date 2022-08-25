@@ -32,6 +32,11 @@ public class pause : MonoBehaviour
     {
       levelManager.sceneBefore = SceneManager.GetActiveScene().name;
       levelManager.gameStarted = false;
+      foreach (var item in GameObject.FindGameObjectsWithTag("marble"))
+      {
+        item.GetComponent<rollingSound>().audioSource.mute = true;
+        item.GetComponent<rollingSound>().audioSource.Pause();
+      }
       if (pauseMenu.activeInHierarchy) {
         continueGame.continueGameF();
       } 
