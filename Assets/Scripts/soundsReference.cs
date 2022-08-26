@@ -9,4 +9,5 @@ public class soundsReference : MonoBehaviour
   public AudioClip[] goalBlocked;
   public AudioClip rollingSound;
   public AudioClip[] marbleDied;
+  public AudioClip marbleBounce;
 }

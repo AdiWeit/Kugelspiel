@@ -40,7 +40,12 @@ public class marbleKilledCheck : MonoBehaviour
         audioSource.clip = GameObject.Find("soundsReference").GetComponent<soundsReference>().border[Random.Range(0, GameObject.Find("soundsReference").GetComponent<soundsReference>().border.Length - 1)];
         audioSource.volume = Mathf.Clamp(gameObject.GetComponent<Rigidbody>().velocity.magnitude - 0.7f, 0.1f, 1);
       }
-      if (other.gameObject.tag == "marble" || other.gameObject.name.Contains("border")) {
+      if (gameObject.tag == "marble" && gameObject.GetComponent<marbleParams>().type.Contains("Bounce")) {
+        audioSource.clip = GameObject.Find("soundsReference").GetComponent<soundsReference>().marbleBounce;
+        audioSource.volume = Mathf.Clamp(gameObject.GetComponent<Rigidbody>().velocity.magnitude - 5f, 0.1f, 0.2f);
+        audioSource.Play();
+      }
+      else if (other.gameObject.tag == "marble" || other.gameObject.name.Contains("border")) {
         audioSource.Play();
       }
     }
