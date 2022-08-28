@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +14,12 @@ public class settingsManager : MonoBehaviour
   public GameObject resetJoystickCheck;
   public GameObject skipLevelCheck;
   public GameObject continueLevelCheck;
+  public GameObject muteB;
+  public GameObject fallingMarbleSound;
   public bool resetBoxPosition = true;
   public bool continueLevel = true;
   public bool skipLevels = true;
+  public bool isMuted = false;
   // Start is called before the first frame update
   void Start()
   {
@@ -43,11 +47,18 @@ public class settingsManager : MonoBehaviour
     PlayerPrefs.SetInt("skipLevels", pChecked ? 1 : 0);
     settingChanged();
   }
+  public void setMuted(bool pMuted) {
+    isMuted = pMuted;
+    PlayerPrefs.SetInt("muted", pMuted ? 1 : 0);
+    PlayerPrefs.Save();
+    getSettings(false);
+  }
   public void settingChanged() {
     PlayerPrefs.Save();
     resetJoystickCheck.SetActive(!Input.gyro.enabled);
     continueLevelCheck.SetActive(!levelManager.GetComponent<levelManager>().random);
     skipLevelCheck.SetActive(continueLevelCheck.GetComponent<Toggle>().isOn);
+    if (levelManager.GetComponent<levelManager>().random) skipLevelCheck.SetActive(false);
   }
   public void getSettings(bool calledByMotionControlToggle) {
     movePlane = GameObject.Find("movingCube").GetComponent<movePlane>();
@@ -78,6 +89,12 @@ public class settingsManager : MonoBehaviour
     // skipLevels
     if (PlayerPrefs.HasKey("skipLevels")) skipLevels = PlayerPrefs.GetInt("skipLevels") == 1 ? true : false;
     skipLevelCheck.GetComponent<Toggle>().isOn = skipLevels;
+    // get muted
+    if (PlayerPrefs.HasKey("muted") && isMuted != (PlayerPrefs.GetInt("muted") == 1 ? true : false)) {
+      muteB.GetComponent<toggleMute>().toggleMuteF();
+    }
+    if (isMuted) AudioListener.volume = 0;
+    else AudioListener.volume = 1;
     settingChanged();
   }
 }
