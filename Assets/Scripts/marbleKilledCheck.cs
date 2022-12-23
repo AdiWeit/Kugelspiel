@@ -19,7 +19,7 @@ public class marbleKilledCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+      
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -27,7 +27,7 @@ public class marbleKilledCheck : MonoBehaviour
       audioSource.pitch = 1;
       audioSource.volume = 1;
       if (other.gameObject.tag == "marble") {
-        if (other.gameObject.GetComponent<marbleParams>().type == "enemy")
+        if (other.gameObject.GetComponent<marbleParams>().type == "enemy" && (gameObject.GetComponent<marbleParams>().type != "enemy" || getMarbleIndex(gameObject) < getMarbleIndex(other.gameObject)))
         {
           Debug.Log("Restart level because enemy touched marble!");
           audioSource.clip = GameObject.Find("soundsReference").GetComponent<soundsReference>().marbleDied[Random.Range(0, GameObject.Find("soundsReference").GetComponent<soundsReference>().marbleDied.Length - 1)];
@@ -48,6 +48,15 @@ public class marbleKilledCheck : MonoBehaviour
       else if (other.gameObject.tag == "marble" || other.gameObject.name.Contains("border")) {
         audioSource.Play();
       }
+    }
+    public int getMarbleIndex(GameObject pGameObj) {
+      for (int i = 0; i < GameObject.FindGameObjectsWithTag("marble").Length; i++)
+      {
+        GameObject marble = GameObject.FindGameObjectsWithTag("marble")[i];
+        if (marble == pGameObj) return i;
+      }
+      Debug.Log("getMarbleIndex failed!");
+      return -1;
     }
     public IEnumerator reloadLevel() {
       yield return new WaitForSeconds(0.5f);
