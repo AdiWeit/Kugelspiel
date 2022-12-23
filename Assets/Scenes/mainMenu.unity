@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5930962, g: 0.5719816, b: 0.55405957, a: 1}
+  m_IndirectSpecularColor: {r: 0.59340966, g: 0.5718966, b: 0.55315083, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -875,6 +875,12 @@ MonoBehaviour:
   - {fileID: 3103371196886136328, guid: 1805356ff430c1ac8a275427fb26c04b, type: 3}
   - {fileID: 3103371196886136328, guid: 6e766dac3470ba0ba87f4524d644f57f, type: 3}
   - {fileID: 3103371196886136328, guid: 25f61976c9355055c860048f84fd6c7a, type: 3}
+  - {fileID: 3103371196886136328, guid: 7a8349ab47179e6da8e3a7e1e6dfab00, type: 3}
+  - {fileID: 3103371196886136328, guid: c872f9646a4177c3db4f79525d625a2c, type: 3}
+  - {fileID: 3103371196886136328, guid: cb7d8bf36da9aa430a60b92d3c10efa3, type: 3}
+  - {fileID: 3103371196886136328, guid: 470213cebf044904b8744e3e679db8d7, type: 3}
+  - {fileID: 3103371196886136328, guid: 2ade2d21a5525edc8812931cc7cdec6a, type: 3}
+  - {fileID: 3103371196886136328, guid: 289679a100033c3ff83ce60e306a6225, type: 3}
   endlessRunnerPref: {fileID: 1472174937839137728, guid: 74a2f8b7693ae6fb48e06b9c50bceaf7, type: 3}
   objectManager: {fileID: 0}
   settingsManager: {fileID: 0}
