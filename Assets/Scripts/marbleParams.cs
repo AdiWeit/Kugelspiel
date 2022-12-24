@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class marbleParams : MonoBehaviour
 {
     public string type = "normal";
-    public int speed = 5;
+    public int speed = 0;
     private Vector3 positionBefore;
     private int repositionMarbleCount;
     private levelManager levelManager;
@@ -16,7 +16,6 @@ public class marbleParams : MonoBehaviour
     {
       if (SceneManager.GetActiveScene().name.Contains("level")) {
         GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, type);
-        if (speed != 33 && speed != 55) gameObject.GetComponent<Rigidbody>().maxAngularVelocity = speed;
       }
       gameObject.GetComponent<Rigidbody>().useGravity = false;
       repositionMarbleCount = 0;
@@ -25,6 +24,7 @@ public class marbleParams : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      this.gameObject.GetComponent<Rigidbody>().AddForce(Mathf.Clamp(this.gameObject.GetComponent<Rigidbody>().velocity.x, -1, 1)*Time.deltaTime*speed, 0, Mathf.Clamp(this.gameObject.GetComponent<Rigidbody>().velocity.z, -1, 1)*Time.deltaTime*speed);
       positionBefore = gameObject.transform.position;
     }
     public IEnumerator setGravity(bool pUseGravity)

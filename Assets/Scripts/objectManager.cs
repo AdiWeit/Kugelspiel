@@ -58,17 +58,19 @@ public class objectManager : MonoBehaviour
         marble.GetComponent<MeshRenderer>().material = blockerMaterial;
         marble.GetComponent<MeshRenderer>().transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
       }
+      if (type.Contains("Speed")) marble.gameObject.GetComponent<Rigidbody>().mass = 0.5f;
       if (type == "mediumSpeed") {
         marble.GetComponent<MeshRenderer>().material = mediumSpeedMaterial;
-        marble.GetComponent<Rigidbody>().maxAngularVelocity = 33;
+        marble.GetComponent<marbleParams>().speed = 10;
+        // marble.GetComponent<Rigidbody>().drag = 1;
       }
       if (type == "highSpeed") {
         marble.GetComponent<MeshRenderer>().material = heightSpeedMaterial;
-        marble.GetComponent<Rigidbody>().maxAngularVelocity = 55;
+        // marble.GetComponent<Rigidbody>().drag = 0;
+        marble.GetComponent<marbleParams>().speed = 25;
       }
       if (type.Contains("Bounce")) {
         marble.GetComponent<SphereCollider>().material = bouncePhysicMaterial;
-        // marble.GetComponent<Rigidbody>().mass = 1;
       }
       if (type == "littleBounce") {
         marble.GetComponent<MeshRenderer>().material = littleBounceMaterial;
