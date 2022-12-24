@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3623269838825764605}
   m_Layer: 0
-  m_Name: level_1_speed_text
+  m_Name: level_1_speed_test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

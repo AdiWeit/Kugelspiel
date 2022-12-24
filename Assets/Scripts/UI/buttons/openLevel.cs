@@ -35,7 +35,9 @@ public class openLevel : MonoBehaviour
       gameObject.transform.GetChild(0).GetComponent<Text>().text = "start!";
       levelPreviewManager = GameObject.Find("levelPreviewManager").GetComponent<levelPreviewManager>();
       levelPreviewManager.waitForMarblePosition = true;
+      Debug.Log("level manager level: " + levelManager.currentLevel);
       if (levelManager.currentLevel != -1) {
+        Debug.Log("trying to destroy level " + levelManager.currentLevel + "...");
         Destroy(GameObject.Find("level_" + levelManager.currentLevel + "(Clone)"));
         movingCube = null;
       }
