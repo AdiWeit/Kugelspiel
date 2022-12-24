@@ -881,6 +881,10 @@ MonoBehaviour:
   - {fileID: 3103371196886136328, guid: 470213cebf044904b8744e3e679db8d7, type: 3}
   - {fileID: 3103371196886136328, guid: 2ade2d21a5525edc8812931cc7cdec6a, type: 3}
   - {fileID: 3103371196886136328, guid: 289679a100033c3ff83ce60e306a6225, type: 3}
+  - {fileID: 1472174937839137728, guid: 75d010308729aaf7ebab83af5b25c0ba, type: 3}
+  - {fileID: 1472174937839137728, guid: 07d104ee704e796c086244a895b9343e, type: 3}
+  - {fileID: 1472174937839137728, guid: bfe06084c66173bc2ae7d9bf48ee205f, type: 3}
+  - {fileID: 1472174937839137728, guid: d3985a8088bbbb9099dc657302fc8c9a, type: 3}
   endlessRunnerPref: {fileID: 1472174937839137728, guid: 74a2f8b7693ae6fb48e06b9c50bceaf7, type: 3}
   objectManager: {fileID: 0}
   settingsManager: {fileID: 0}

@@ -15,7 +15,7 @@ public class marbleParams : MonoBehaviour
     void Start()
     {
       if (SceneManager.GetActiveScene().name.Contains("level")) {
-        GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, false, type);
+        GameObject.Find("objectManager").GetComponent<objectManager>().transformMarbleToType(gameObject, type);
         if (speed != 33 && speed != 55) gameObject.GetComponent<Rigidbody>().maxAngularVelocity = speed;
       }
       gameObject.GetComponent<Rigidbody>().useGravity = false;

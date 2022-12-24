@@ -8278,6 +8278,7 @@ MonoBehaviour:
   littleBounceMaterial: {fileID: 2100000, guid: 6f759c07220980313be98af4f4c1ef58, type: 2}
   mediumBounceMaterial: {fileID: 2100000, guid: 3ee60cea28d4b78a2af50c65aef3c1e4, type: 2}
   muchBounceMaterial: {fileID: 2100000, guid: 2ee080a9554597e91aa0a2a9204b33ef, type: 2}
+  white: {fileID: 2100000, guid: 8e2d8b433a3c97278b2995e5401e92e7, type: 2}
   bouncePhysicMaterial: {fileID: 13400000, guid: 23e797d9343ab80d6a73e4e7a789fcbe, type: 2}
   sphereReference: {fileID: 2413374920935079475, guid: 5aa2922531b6ee7bba8dd855df390329, type: 3}
   movingCube: {fileID: 0}

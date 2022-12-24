@@ -11,6 +11,7 @@ public class objectManager : MonoBehaviour
     public Material littleBounceMaterial;
     public Material mediumBounceMaterial;
     public Material muchBounceMaterial;
+    public Material white;
     public PhysicMaterial bouncePhysicMaterial;
     public GameObject sphereReference;
     public movePlane movingCube;
@@ -44,12 +45,12 @@ public class objectManager : MonoBehaviour
         newSphere.transform.SetParent(GameObject.Find("spawningSpheres").transform);
         // newSphere.GetComponent<marbleKilledCheck>().liveManager = liveManager;
         // newSphere.GetComponent<marbleFellCheck>().liveManager = liveManager;
-        transformMarbleToType(newSphere, true, type[i]);
+        transformMarbleToType(newSphere, type[i]);
         if (type.Length == 1) return newSphere;
       }
       return new GameObject();
     }
-    public void transformMarbleToType(GameObject marble, bool randomLevel, string type)
+    public void transformMarbleToType(GameObject marble, string type)
     {
       marble.GetComponent<marbleParams>().type = type;
       if (type == "enemy") marble.GetComponent<MeshRenderer>().material = enemyMaterial;
@@ -77,6 +78,9 @@ public class objectManager : MonoBehaviour
       }
       if (type == "muchBounce") {
         marble.GetComponent<MeshRenderer>().material = muchBounceMaterial;
+      }
+      if (type == "normal") {
+        marble.GetComponent<MeshRenderer>().material = white;
       }
     }
 }
