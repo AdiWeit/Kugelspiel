@@ -53,6 +53,8 @@ public class objectManager : MonoBehaviour
     public void transformMarbleToType(GameObject marble, string type)
     {
       marble.GetComponent<marbleParams>().type = type;
+      marble.GetComponent<SphereCollider>().material = null;
+      marble.GetComponent<MeshRenderer>().transform.localScale = new Vector3(1f, 1f, 1f);
       if (type == "enemy") marble.GetComponent<MeshRenderer>().material = enemyMaterial;
       if (type == "blocker") {
         marble.GetComponent<MeshRenderer>().material = blockerMaterial;

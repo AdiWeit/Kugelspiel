@@ -886,6 +886,9 @@ MonoBehaviour:
   - {fileID: 1472174937839137728, guid: 07d104ee704e796c086244a895b9343e, type: 3}
   - {fileID: 1472174937839137728, guid: bfe06084c66173bc2ae7d9bf48ee205f, type: 3}
   - {fileID: 1472174937839137728, guid: d3985a8088bbbb9099dc657302fc8c9a, type: 3}
+  - {fileID: 1472174937839137728, guid: 22a6bda694fbe06e192b6c83acccd4c5, type: 3}
+  - {fileID: 1472174937839137728, guid: 93d8745a37a109fe5a665565b3d7dae8, type: 3}
+  - {fileID: 1472174937839137728, guid: 428c63e01f60bd81fbb607825c107692, type: 3}
   endlessRunnerPref: {fileID: 1472174937839137728, guid: 74a2f8b7693ae6fb48e06b9c50bceaf7, type: 3}
   objectManager: {fileID: 0}
   settingsManager: {fileID: 0}

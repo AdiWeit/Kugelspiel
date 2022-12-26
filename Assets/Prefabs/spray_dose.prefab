@@ -146,12 +146,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ff3db733c974563ad4adff20c0372f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  types: []
   type: 
+  random: 0
   red: {fileID: 2100000, guid: 3b90483da0596d861983ad119e45db96, type: 2}
   blue: {fileID: 2100000, guid: a8991968d87bd9c45b6b92f3911db139, type: 2}
   orange: {fileID: 2100000, guid: ddd7cde77f2fcd593a41f74a2bfa45f9, type: 2}
   white: {fileID: 2100000, guid: 8e2d8b433a3c97278b2995e5401e92e7, type: 2}
   black: {fileID: 2100000, guid: 0c39276e3f3f8ea9f926890045f65278, type: 2}
+  random_material: {fileID: 2100000, guid: e72adf1c5887a152abb8ae5f06d153be, type: 2}
   body: {fileID: 5376971266867804916}
 --- !u!65 &439630773194919393
 BoxCollider:
